@@ -1,0 +1,53 @@
+<header class="site-header" id="site-header">
+  <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a class="brand" href="/{{ lang }}/">
+        <img class="brand-mark" src="/static/images/logo/logo-nav.png" alt="{{ site.company_name }} logo" width="44" height="41">
+        <span class="brand-name">
+          <strong>Sri Annamalayar</strong>
+          <small>Transport & Logistics</small>
+        </span>
+      </a>
+
+      <div class="header-mobile-actions">
+        <a class="lang-switch lang-switch-compact" href="{{ alt_lang_url }}" aria-label="Switch language">
+          <span class="{% if lang == 'en' %}is-active{% endif %}">EN</span>
+          <span class="sep">|</span>
+          <span class="{% if lang == 'ta' %}is-active{% endif %}">தமிழ்</span>
+        </a>
+
+        <button class="nav-toggle" type="button" id="navToggle" aria-controls="siteNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="site-nav-menu" id="siteNavMenu">
+        <ul class="nav-links">
+          {% for label, url in nav %}
+          <li class="nav-item {% if 'services' in url %}nav-item-dropdown{% endif %}">
+            {% if loop.index == 3 %}
+            <a href="{{ url }}" class="nav-link {% if current_slug == 'services' %}active{% endif %}">{{ label }}</a>
+            <ul class="dropdown-panel">
+              {% for slabel, surl in services_dropdown %}
+              <li><a href="{{ surl }}">{{ slabel }}</a></li>
+              {% endfor %}
+            </ul>
+            {% else %}
+            <a href="{{ url }}" class="nav-link {% if (current_slug == '' and loop.index == 1) or url.endswith('/' + current_slug) and current_slug != '' %}active{% endif %}">{{ label }}</a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="nav-actions">
+          <a class="lang-switch" href="{{ alt_lang_url }}" aria-label="Switch language">
+            <span class="{% if lang == 'en' %}is-active{% endif %}">EN</span>
+            <span class="sep">|</span>
+            <span class="{% if lang == 'ta' %}is-active{% endif %}">தமிழ்</span>
+          </a>
+          <a class="btn btn-quote" href="/{{ lang }}/contact">{{ ui.request_quote }}</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

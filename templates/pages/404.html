@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="error-section">
+  <div class="container text-center">
+    <img class="error-brand" src="/static/images/logo/logo-nav.png" alt="{{ site.company_name }} logo" width="72" height="67">
+    <h1>{{ content.h1 }}</h1>
+    <p>{{ content.body }}</p>
+    <div class="error-actions">
+      <a class="btn btn-accent" href="/{{ lang }}/">{{ ui.go_home }}</a>
+      <a class="btn btn-outline-dark" href="/{{ lang }}/contact">{{ ui.contact_us }}</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

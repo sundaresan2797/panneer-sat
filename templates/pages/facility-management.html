@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as m with context %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ site.company_name }}</span>
+    <h1>{{ content.h1 }}</h1>
+    <p class="page-hero-subtitle">{{ content.intro }}</p>
+  </div>
+</section>
+
+<section class="capabilities-section">
+  <div class="container">
+    <div class="capability-card-grid">
+      {% for s in content.sections %}
+      <div class="capability-card">
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="why-section">
+  <div class="container">
+    {{ m.section_header(None, content.why_title, None) }}
+    <div class="why-card-grid">
+      {% for card in why_choose_us %}
+      {{ m.why_card(card) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="container narrow">
+    <h2>FAQ</h2>
+    <div class="accordion" id="facilityFaq">
+      {% for item in content.faq %}
+      <div class="accordion-item">
+        <h3 class="accordion-header" id="ffaqHead{{ loop.index }}">
+          <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#ffaqBody{{ loop.index }}" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="ffaqBody{{ loop.index }}">
+            {{ item.q }}
+          </button>
+        </h3>
+        <div id="ffaqBody{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" aria-labelledby="ffaqHead{{ loop.index }}" data-bs-parent="#facilityFaq">
+          <div class="accordion-body">{{ item.a }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{{ m.cta_block(cta_corporate.title, cta_corporate.desc, lang, ui, "corporate", whatsapp_number, whatsapp_messages.quote) }}
+
+{% endblock %}

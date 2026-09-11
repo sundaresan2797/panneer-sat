@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as m with context %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ site.company_name }}</span>
+    <h1>{{ content.h1 }}</h1>
+  </div>
+</section>
+
+<section class="reviews-section">
+  <div class="container narrow text-center">
+    <p class="reviews-note">{{ reviews_note }}</p>
+  </div>
+</section>
+
+{{ m.cta_block(ui.request_quote, "", lang, ui, "local") }}
+
+{% endblock %}

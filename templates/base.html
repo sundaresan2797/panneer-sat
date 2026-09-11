@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ content.meta_title }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ content.meta_desc }}{% endblock %}">
+<link rel="canonical" href="{{ canonical_url }}">
+<link rel="alternate" hreflang="en" href="{{ site_url }}/en/{{ current_slug }}">
+<link rel="alternate" hreflang="ta" href="{{ site_url }}/ta/{{ current_slug }}">
+<link rel="alternate" hreflang="x-default" href="{{ site_url }}/en/{{ current_slug }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sri Annamalayar Transport & Logistics">
+<meta property="og:title" content="{{ content.meta_title }}">
+<meta property="og:description" content="{{ content.meta_desc }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:image" content="{{ site_url }}/static/images/company/og-cover.jpg">
+<meta property="og:locale" content="{{ 'en_IN' if lang == 'en' else 'ta_IN' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ content.meta_title }}">
+<meta name="twitter:description" content="{{ content.meta_desc }}">
+
+<link rel="icon" href="/static/images/logo/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/static/images/logo/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="/static/images/logo/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/static/images/logo/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/responsive.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{ site.company_name }}",
+  "url": "{{ site_url }}/{{ lang }}/",
+  "telephone": "+91{{ site.phones[0] }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "No. 97, SIDCO Industrial Estate, SIPCOT",
+    "addressLocality": "Ranipet",
+    "addressRegion": "Tamil Nadu",
+    "postalCode": "632403",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    }
+  ]
+}
+</script>
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+{% include "components/navbar.html" %}
+
+<main id="main-content">
+{% block content %}{% endblock %}
+</main>
+
+{% include "components/footer.html" %}
+{% include "components/whatsapp-button.html" %}
+{% include "components/mobile-action-bar.html" %}
+
+<button id="back-to-top" class="back-to-top" type="button" aria-label="{{ ui.back_to_top }}">&uarr;</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/main.js" defer></script>
+<script src="/static/js/language.js" defer></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

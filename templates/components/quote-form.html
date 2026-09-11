@@ -1,0 +1,68 @@
+<div class="quote-form-wrap">
+  <h2>{{ quote_form.title }}</h2>
+  <form id="enquiryForm" class="quote-form" novalidate>
+    <input type="hidden" name="language" value="{{ lang }}">
+    <div class="form-honeypot" aria-hidden="true">
+      <label for="website">Website</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">{{ quote_form.name }} <span class="req">*</span></label>
+        <input type="text" id="name" name="name" required minlength="2" maxlength="100">
+        <span class="form-error" data-error-for="name"></span>
+      </div>
+      <div class="form-group">
+        <label for="company_name">{{ quote_form.company }}</label>
+        <input type="text" id="company_name" name="company_name" maxlength="150">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="phone">{{ quote_form.phone }} <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" required minlength="7" maxlength="20">
+        <span class="form-error" data-error-for="phone"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">{{ quote_form.email }}</label>
+        <input type="email" id="email" name="email" maxlength="150">
+        <span class="form-error" data-error-for="email"></span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="location">{{ quote_form.location }} <span class="req">*</span></label>
+        <input type="text" id="location" name="location" required minlength="2" maxlength="150">
+      </div>
+      <div class="form-group">
+        <label for="service">{{ quote_form.service }} <span class="req">*</span></label>
+        <select id="service" name="service" required>
+          <option value="" disabled selected></option>
+          {% for s in quote_form.services %}
+          <option value="{{ s }}">{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="workers_or_vehicles">{{ quote_form.count }}</label>
+      <input type="text" id="workers_or_vehicles" name="workers_or_vehicles" maxlength="50">
+    </div>
+
+    <div class="form-group">
+      <label for="message">{{ quote_form.details }} <span class="req">*</span></label>
+      <textarea id="message" name="message" rows="4" required minlength="5" maxlength="2000"></textarea>
+      <span class="form-error" data-error-for="message"></span>
+    </div>
+
+    <button type="submit" class="btn btn-accent btn-block" id="enquirySubmitBtn">
+      <span class="btn-label">{{ ui.submit }}</span>
+    </button>
+
+    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+  </form>
+</div>

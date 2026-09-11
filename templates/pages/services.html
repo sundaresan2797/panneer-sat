@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as m with context %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ site.company_name }}</span>
+    <h1>{{ content.h1 }}</h1>
+    <p class="page-hero-subtitle">{{ content.subtitle }}</p>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="container">
+    <div class="service-card-grid">
+      {% for card in service_cards %}
+      {{ m.service_card(card) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{{ m.cta_block(ui.request_quote, "", lang, ui, "local") }}
+
+{% endblock %}

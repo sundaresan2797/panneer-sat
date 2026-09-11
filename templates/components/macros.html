@@ -1,0 +1,68 @@
+{% macro section_header(eyebrow, title, subtitle) %}
+<div class="section-header">
+  {% if eyebrow %}<span class="eyebrow">{{ eyebrow }}</span>{% endif %}
+  <h2>{{ title }}</h2>
+  {% if subtitle %}<p class="section-subtitle">{{ subtitle }}</p>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro service_card(card) %}
+<article class="service-card">
+  <div class="service-card-media">
+    <img src="{{ card.image }}" alt="{{ card.image_alt }}" loading="lazy" width="900" height="600">
+  </div>
+  <div class="service-card-body">
+  <h3>{{ card.title }}</h3>
+  <p>{{ card.desc }}</p>
+  <ul class="service-card-points">
+    {% for point in card.points %}<li>{{ point }}</li>{% endfor %}
+  </ul>
+  <a class="service-card-cta" href="{{ card.link }}">{{ card.cta }} &rarr;</a>
+  </div>
+</article>
+{% endmacro %}
+
+{% macro capability_card(card) %}
+<div class="capability-card">
+  <h3>{{ card.title }}</h3>
+  <p>{{ card.desc }}</p>
+</div>
+{% endmacro %}
+
+{% macro industry_card(name) %}
+<div class="industry-card"><span>{{ name }}</span></div>
+{% endmacro %}
+
+{% macro why_card(card) %}
+<div class="why-card">
+  <span class="why-num">{{ card.num }}</span>
+  <h3>{{ card.title }}</h3>
+  <p>{{ card.desc }}</p>
+</div>
+{% endmacro %}
+
+{% macro cta_block(title, desc, lang, ui, style="corporate", whatsapp_number=None, whatsapp_message=None) %}
+<section class="cta-block cta-{{ style }}">
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <h2>{{ title }}</h2>
+      <p>{{ desc }}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-accent" href="/{{ lang }}/contact">{{ ui.request_quote }}</a>
+      <a class="btn btn-outline-light" href="tel:{{ site.phones[0] }}">{{ ui.call_us }}</a>
+      {% if style == "corporate" and whatsapp_number %}
+      <a class="btn btn-whatsapp" href="https://wa.me/{{ whatsapp_number }}?text={{ (whatsapp_message or '') | urlencode }}" target="_blank" rel="noopener">{{ ui.whatsapp }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro contact_card(icon, title, lines) %}
+<div class="contact-card">
+  <div class="contact-card-icon" data-icon="{{ icon }}" aria-hidden="true"></div>
+  <h3>{{ title }}</h3>
+  {% for line in lines %}<p>{{ line }}</p>{% endfor %}
+</div>
+{% endmacro %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <h1>{{ content.h1 }}</h1>
+  </div>
+</section>
+
+<section class="legal-section">
+  <div class="container narrow">
+    {% for heading, para in content.body %}
+    <h2>{{ heading }}</h2>
+    <p>{{ para }}</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

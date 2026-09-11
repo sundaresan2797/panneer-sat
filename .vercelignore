@@ -1,0 +1,11 @@
+venv/
+secrets/
+design-source/
+.env
+.env.local
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.vscode/
+.idea/

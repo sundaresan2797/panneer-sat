@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as m with context %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ site.company_name }}</span>
+    <h1>{{ content.h1 }}</h1>
+    <p class="page-hero-subtitle">{{ content.intro }}</p>
+  </div>
+</section>
+
+<section class="contact-details-section">
+  <div class="container contact-card-grid">
+    {{ m.contact_card("phone", ui.call_us, site.phones) }}
+    {{ m.contact_card("office", content.office_label, site.office_address) }}
+    {{ m.contact_card("transport", content.transport_label, site.transport_address) }}
+    <div class="contact-card">
+      <div class="contact-card-icon" data-icon="clock" aria-hidden="true"></div>
+      <h3>{{ content.hours_label }}</h3>
+      {% for day, hours in site.hours %}
+      <p><span class="hours-day">{{ day }}</span><span class="hours-value">{{ hours }}</span></p>
+      {% endfor %}
+      <p class="lunch-note">{{ content.lunch_label }}: {{ site.lunch }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="map-section">
+  <div class="container">
+    <h2>{{ content.map_title }}</h2>
+    <div class="map-embed">
+      <iframe
+        title="Sri Annamalayar Transport & Logistics — Office Location"
+        src="https://www.google.com/maps?q=SIDCO+Industrial+Estate+SIPCOT+Ranipet+Tamil+Nadu+632403&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="container narrow">
+    {% include "components/quote-form.html" %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/js/enquiry.js" defer></script>
+{% endblock %}

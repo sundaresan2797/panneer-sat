@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as m with context %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ site.company_name }}</span>
+    <h1>{{ content.h1 }}</h1>
+    <p class="page-hero-subtitle">{{ content.intro }}</p>
+  </div>
+</section>
+
+<section class="industries-section">
+  <div class="container">
+    <div class="industry-card-grid">
+      {% for name in industry_cards %}
+      {{ m.industry_card(name) }}
+      {% endfor %}
+    </div>
+    <p class="text-center industries-note">{{ content.note }}</p>
+    <div class="text-center">
+      <a class="btn btn-accent" href="/{{ lang }}/contact">{{ content.cta }}</a>
+    </div>
+  </div>
+</section>
+
+{{ m.cta_block(cta_corporate.title, cta_corporate.desc, lang, ui, "corporate", whatsapp_number, whatsapp_messages.quote) }}
+
+{% endblock %}

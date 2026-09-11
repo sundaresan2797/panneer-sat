@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as m with context %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ site.company_name }}</span>
+    <h1>{{ content.h1 }}</h1>
+  </div>
+</section>
+
+<section class="about-intro-section">
+  <div class="container narrow">
+    {% for para in content.intro %}
+    <p>{{ para }}</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="about-experience-section">
+  <div class="container two-col">
+    <div class="info-card">
+      <h2>{{ content.experience_title }}</h2>
+      <p>{{ content.experience_desc }}</p>
+    </div>
+    <div class="info-card">
+      <h2>{{ content.what_we_do_title }}</h2>
+      <p>{{ content.what_we_do_desc }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="vision-mission-section">
+  <div class="container two-col">
+    <div class="vm-card">
+      <h2>{{ content.vision_title }}</h2>
+      <p>{{ content.vision }}</p>
+    </div>
+    <div class="vm-card">
+      <h2>{{ content.mission_title }}</h2>
+      <p>{{ content.mission }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="approach-section">
+  <div class="container narrow">
+    <h2>{{ content.approach_title }}</h2>
+    <p>{{ content.approach_desc }}</p>
+  </div>
+</section>
+
+<section class="why-section">
+  <div class="container">
+    {{ m.section_header(None, content.why_title, None) }}
+    <div class="why-card-grid">
+      {% for card in why_choose_us %}
+      {{ m.why_card(card) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{{ m.cta_block(content.cta_title, "", lang, ui, "local") }}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as m with context %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ site.company_name }}</span>
+    <h1>{{ content.h1 }}</h1>
+    <p class="page-hero-subtitle">{{ content.intro }}</p>
+  </div>
+</section>
+
+<section class="vehicle-section">
+  <div class="container">
+    <h2 class="text-center">{{ content.primary }}</h2>
+    <div class="vehicle-type-grid">
+      {% for t in content.types %}
+      <div class="vehicle-type-card">
+        <div class="vehicle-type-icon" aria-hidden="true"></div>
+        <span>{{ t }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="vehicle-gallery-section">
+  <div class="container">
+    <div class="gallery-preview-grid">
+      {% for i in range(1, 5) %}
+      <div class="gallery-thumb">
+        <img src="/static/images/vehicles/tipper-{{ '%02d' % i }}.jpg" alt="10 wheeler tipper truck — Sri Annamalayar Transport" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')">
+        <div class="gallery-thumb-fallback" aria-hidden="true"></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="info-band">
+  <div class="container narrow">
+    <h2>{{ content.rental_title }}</h2>
+    <p>{{ content.rental_desc }}</p>
+    <p class="note-text">{{ content.availability_note }}</p>
+  </div>
+</section>
+
+<section class="why-section">
+  <div class="container">
+    {{ m.section_header(None, content.why_title, None) }}
+    <div class="why-card-grid">
+      {% for card in why_choose_us %}
+      {{ m.why_card(card) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{{ m.cta_block(cta_local.title, cta_local.desc, lang, ui, "local") }}
+
+{% endblock %}

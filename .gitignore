@@ -1,0 +1,23 @@
+# Environment
+.env
+.env.local
+
+# Secrets / credentials — never commit these
+secrets/
+*.serviceaccount.json
+*service-account*.json
+*-service-account.json
+
+# Python
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Vercel
+.vercel/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
