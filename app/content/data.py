@@ -338,6 +338,40 @@ REVIEWS_NOTE = {
     "ta": "வாடிக்கையாளர் கருத்துகள், பெயர், மதிப்பீடு மற்றும் வெளியிட அனுமதி நிறுவன உரிமையாளரிடமிருந்து உறுதிப்படுத்தப்பட்ட பிறகு இங்கு வெளியிடப்படும். [TO BE CONFIRMED]",
 }
 
+# Real photos from the office opening / pooja ceremony. "position" overrides
+# the default center crop for the grid thumbnail — only needed for the one
+# portrait shot, so the subject (not empty ceiling/floor) stays in frame.
+GALLERY_PHOTOS = {
+    "en": [
+        {"file": "gallery-01.jpg", "category": "company", "position": "center",
+         "alt": "Sri Annamalayar Transport & Logistics team at the office opening ceremony"},
+        {"file": "gallery-02.jpg", "category": "company", "position": "center",
+         "alt": "Traditional pooja ceremony at the Sri Annamalayar Transport & Logistics office opening"},
+        {"file": "gallery-03.jpg", "category": "company", "position": "center",
+         "alt": "Sri Annamalayar Transport & Logistics team outside the office"},
+        {"file": "gallery-04.jpg", "category": "company", "position": "center 32%",
+         "alt": "Office opening pooja ritual at Sri Annamalayar Transport & Logistics"},
+        {"file": "gallery-05.jpg", "category": "company", "position": "center",
+         "alt": "Sri Annamalayar Transport & Logistics office team"},
+        {"file": "gallery-06.jpg", "category": "company", "position": "center",
+         "alt": "Pooja ceremony setup at the Sri Annamalayar Transport & Logistics office"},
+    ],
+    "ta": [
+        {"file": "gallery-01.jpg", "category": "company", "position": "center",
+         "alt": "அலுவலக திறப்பு விழாவில் Sri Annamalayar Transport & Logistics குழு"},
+        {"file": "gallery-02.jpg", "category": "company", "position": "center",
+         "alt": "Sri Annamalayar Transport & Logistics அலுவலக திறப்பில் பாரம்பரிய பூஜை"},
+        {"file": "gallery-03.jpg", "category": "company", "position": "center",
+         "alt": "அலுவலகத்திற்கு வெளியே Sri Annamalayar Transport & Logistics குழு"},
+        {"file": "gallery-04.jpg", "category": "company", "position": "center 32%",
+         "alt": "Sri Annamalayar Transport & Logistics அலுவலக திறப்பு பூஜை சடங்கு"},
+        {"file": "gallery-05.jpg", "category": "company", "position": "center",
+         "alt": "Sri Annamalayar Transport & Logistics அலுவலக குழு"},
+        {"file": "gallery-06.jpg", "category": "company", "position": "center",
+         "alt": "Sri Annamalayar Transport & Logistics அலுவலகத்தில் பூஜை ஏற்பாடு"},
+    ],
+}
+
 # ---------------------------------------------------------------------------
 # Per-page content
 # ---------------------------------------------------------------------------
@@ -613,16 +647,28 @@ PAGES = {
             "meta_desc": "A glimpse of our workforce, vehicles, facility management teams and transport operations.",
             "h1": "Our Operations",
             "subtitle": "A glimpse of our workforce, vehicles and service operations.",
-            "categories": ["Workforce", "Transport", "Heavy Vehicles", "Facility Management", "Company"],
-            "note": "Photographs will be added here once supplied by the business. [TO BE CONFIRMED]",
+            "categories": [
+                {"slug": "workforce", "label": "Workforce"},
+                {"slug": "transport", "label": "Transport"},
+                {"slug": "heavy-vehicles", "label": "Heavy Vehicles"},
+                {"slug": "facility-management", "label": "Facility Management"},
+                {"slug": "company", "label": "Company"},
+            ],
+            "note": "More photographs — workforce, transport and facility management in action — will be added here soon.",
         },
         "ta": {
             "meta_title": "கேலரி | எங்கள் செயல்பாடுகள் | Sri Annamalayar Transport & Logistics",
             "meta_desc": "எங்கள் மனிதவளம், வாகனங்கள், Facility Management குழு மற்றும் போக்குவரத்து செயல்பாடுகளின் ஒரு பார்வை.",
             "h1": "எங்கள் செயல்பாடுகள்",
             "subtitle": "எங்கள் மனிதவளம், வாகனங்கள் மற்றும் சேவை செயல்பாடுகளின் ஒரு பார்வை.",
-            "categories": ["மனிதவளம்", "போக்குவரத்து", "கனரக வாகனங்கள்", "Facility Management", "நிறுவனம்"],
-            "note": "நிறுவனத்திடமிருந்து புகைப்படங்கள் கிடைத்தவுடன் இங்கு சேர்க்கப்படும். [TO BE CONFIRMED]",
+            "categories": [
+                {"slug": "workforce", "label": "மனிதவளம்"},
+                {"slug": "transport", "label": "போக்குவரத்து"},
+                {"slug": "heavy-vehicles", "label": "கனரக வாகனங்கள்"},
+                {"slug": "facility-management", "label": "Facility Management"},
+                {"slug": "company", "label": "நிறுவனம்"},
+            ],
+            "note": "மேலும் புகைப்படங்கள் — மனிதவளம், போக்குவரத்து மற்றும் Facility Management செயல்பாடுகள் — விரைவில் இங்கு சேர்க்கப்படும்.",
         },
     },
     "reviews": {

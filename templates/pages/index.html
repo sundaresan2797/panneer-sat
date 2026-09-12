@@ -136,9 +136,9 @@
   <div class="container">
     {{ m.section_header(None, content.gallery_title, content.gallery_subtitle) }}
     <div class="gallery-preview-grid">
-      {% for i in range(1, 7) %}
+      {% for photo in gallery_photos %}
       <div class="gallery-thumb">
-        <img src="/static/images/gallery/gallery-{{ '%02d' % i }}.jpg" alt="Sri Annamalayar Transport & Logistics operations photo {{ i }}" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')">
+        <img src="/static/images/gallery/{{ photo.file }}" alt="{{ photo.alt }}" loading="lazy" style="object-position: {{ photo.position }}" onerror="this.parentElement.classList.add('img-fallback')">
         <div class="gallery-thumb-fallback" aria-hidden="true"></div>
       </div>
       {% endfor %}

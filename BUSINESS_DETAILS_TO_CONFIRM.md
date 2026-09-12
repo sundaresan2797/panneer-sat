@@ -45,7 +45,7 @@ Google Sheet ID for enquiry logging:   -> set GOOGLE_SHEET_ID in .env (see below
 | Company email / official name / GSTIN / addresses | `app/content/data.py` → `SITE` dict |
 | Client logos (Mahindra etc.) | Only add once the client has given written permission to display their name/logo publicly. Until then the site uses "Serving Leading Industrial & Corporate Clients." |
 | Customer reviews | `app/content/data.py` — do not publish names, ratings or quotes without the customer's and owner's permission |
-| Real photographs (~15–20 images) | `static/images/` — see `static/images/README.md` for exact filenames expected by the templates |
+| Real photographs (~15–20 images) | 🟡 In progress — 6 office/pooja-ceremony photos added to the gallery (all tagged "Company"). Still missing: hero image, workforce/transport/facility-management action shots. See `static/images/README.md`. |
 | Logo | ✅ Done — real logo supplied and wired into the navbar, footer, 404 page, favicons, apple-touch-icon and social-share (OG) image. |
 | Google Sheet for enquiries | ✅ Done — `SAT_QUOTA` sheet confirmed shared and working end-to-end (see below). Still needed only for **production**: set `GOOGLE_SERVICE_ACCOUNT_JSON` on Vercel. |
 

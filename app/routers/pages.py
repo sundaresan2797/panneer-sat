@@ -8,6 +8,7 @@ from app.content.data import (
     CTA_CORPORATE,
     CTA_LOCAL,
     FOOTER,
+    GALLERY_PHOTOS,
     INDUSTRY_CARDS,
     NAV,
     PAGES,
@@ -97,6 +98,7 @@ def home(request: Request, lang: str):
             "cta_local": CTA_LOCAL[lang],
             "reviews_note": REVIEWS_NOTE[lang],
             "quote_form": QUOTE_FORM[lang],
+            "gallery_photos": GALLERY_PHOTOS[lang],
         }
     )
     return templates.TemplateResponse(request, "pages/index.html", ctx)
@@ -119,6 +121,8 @@ def page(request: Request, lang: str, page: str):
         ctx.update({"industry_cards": INDUSTRY_CARDS[lang], "cta_corporate": CTA_CORPORATE[lang]})
     if page == "reviews":
         ctx.update({"reviews_note": REVIEWS_NOTE[lang]})
+    if page == "gallery":
+        ctx.update({"gallery_photos": GALLERY_PHOTOS[lang]})
     if page == "contact":
         ctx.update({"quote_form": QUOTE_FORM[lang]})
     if page in ("manpower", "facility-management", "transport", "heavy-vehicle-rental"):

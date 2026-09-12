@@ -1,10 +1,10 @@
 # Image drop-in guide
 
-The real company logo is in place. Real operational photographs are **not**
-available yet, so the hero, about, and gallery sections currently show a
-styled placeholder (navy/blue gradient with the logo watermark) instead of a
-broken image icon. Once the business owner supplies real photos, drop them
-in with these **exact filenames** and they will appear automatically — no
+The real company logo and 6 real office/opening-ceremony photos are in
+place (gallery). The hero and about sections still don't have a real photo
+yet, so those show a styled placeholder (navy/blue gradient with the logo
+watermark) instead of a broken image icon. Once supplied, drop new photos in
+with these **exact filenames** and they will appear automatically — no
 template changes needed.
 
 ```
@@ -23,7 +23,11 @@ static/images/               (served to visitors — everything here is deployed
     company-01.jpg          used on the homepage "About" section
     og-cover.jpg            generated 1200x630 social-share image (logo + company name on navy) — replace with a real photo-based cover once available
   gallery/
-    gallery-01.jpg ... gallery-12.jpg   homepage preview (6) + gallery page (12)
+    gallery-01.jpg ... gallery-06.jpg   real photos (office opening + pooja ceremony), shown on
+                                          the homepage preview and the /gallery page. Metadata
+                                          (alt text, category, crop focus) is in
+                                          app/content/data.py -> GALLERY_PHOTOS, not the filename —
+                                          add more by adding an entry there, in both "en" and "ta".
   vehicles/
     tipper-01.jpg ... tipper-04.jpg     heavy vehicle rental page
   manpower/, facility/, transport/      reserved for future use on service pages
@@ -33,7 +37,15 @@ design-source/               (project root — originals, NOT deployed to Vercel
   Service/
     Manpower_Supply.png, Facility_Management.png,
     Transport_Logistics.png, Heavy_Vehicle_Rental.png   real photos as supplied (~2-3MB each)
+  gallery/
+    WhatsApp Image ....jpeg             the 6 original gallery photos, unrenamed/unprocessed
 ```
+
+All 6 current gallery photos are tagged `"company"` (office opening / pooja
+ceremony — there's no workforce, transport, or facility-management photo
+yet). The `/gallery` page's category filter buttons for those still work,
+they just show an empty grid until matching photos are added — that's
+expected, not a bug.
 
 Source files (the original logo and the full-resolution service photos) live
 in `design-source/` at the project root, not under `static/images/`. That's

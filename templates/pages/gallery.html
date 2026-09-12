@@ -15,14 +15,14 @@
     <div class="gallery-filters" role="tablist">
       <button class="gallery-filter is-active" data-filter="all" type="button">{{ ui.all_label }}</button>
       {% for cat in content.categories %}
-      <button class="gallery-filter" data-filter="{{ cat | lower | replace(' ', '-') }}" type="button">{{ cat }}</button>
+      <button class="gallery-filter" data-filter="{{ cat.slug }}" type="button">{{ cat.label }}</button>
       {% endfor %}
     </div>
 
     <div class="gallery-grid" id="galleryGrid">
-      {% for i in range(1, 13) %}
-      <button class="gallery-item" type="button" data-full="/static/images/gallery/gallery-{{ '%02d' % i }}.jpg" data-filter="all" aria-label="Open image {{ i }}">
-        <img src="/static/images/gallery/gallery-{{ '%02d' % i }}.jpg" alt="Sri Annamalayar Transport & Logistics operations photo {{ i }}" loading="lazy" onerror="this.closest('.gallery-item').classList.add('img-fallback')">
+      {% for photo in gallery_photos %}
+      <button class="gallery-item" type="button" data-full="/static/images/gallery/{{ photo.file }}" data-filter="{{ photo.category }}" aria-label="{{ photo.alt }}">
+        <img src="/static/images/gallery/{{ photo.file }}" alt="{{ photo.alt }}" loading="lazy" style="object-position: {{ photo.position }}" onerror="this.closest('.gallery-item').classList.add('img-fallback')">
         <div class="gallery-item-fallback" aria-hidden="true"></div>
       </button>
       {% endfor %}
