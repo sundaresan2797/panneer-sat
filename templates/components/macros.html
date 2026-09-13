@@ -6,6 +6,20 @@
 </div>
 {% endmacro %}
 
+{% macro trust_icon(index) %}
+{% if index == 0 %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
+{% elif index == 1 %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="4"/><circle cx="15" cy="13" r="4"/></svg>
+{% elif index == 2 %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg>
+{% elif index == 3 %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h13M12 6l6 6-6 6"/></svg>
+{% else %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="7" rx="1.5"/><path d="M8 10V7a2 2 0 012-2h4a2 2 0 012 2v3"/></svg>
+{% endif %}
+{% endmacro %}
+
 {% macro service_card(card) %}
 <article class="service-card">
   <div class="service-card-media">
@@ -22,15 +36,23 @@
 </article>
 {% endmacro %}
 
-{% macro capability_card(card) %}
+{% macro capability_card(card, index=None) %}
 <div class="capability-card">
+  {% if index is not none %}
+  <div class="capability-card-icon" aria-hidden="true">{{ trust_icon(index % 5) }}</div>
+  {% endif %}
   <h3>{{ card.title }}</h3>
   <p>{{ card.desc }}</p>
 </div>
 {% endmacro %}
 
-{% macro industry_card(name) %}
-<div class="industry-card"><span>{{ name }}</span></div>
+{% macro industry_card(name, index=None) %}
+<div class="industry-card">
+  {% if index is not none %}
+  <div class="industry-card-icon" aria-hidden="true">{{ trust_icon(index % 5) }}</div>
+  {% endif %}
+  <span>{{ name }}</span>
+</div>
 {% endmacro %}
 
 {% macro why_card(card) %}
@@ -59,9 +81,21 @@
 </section>
 {% endmacro %}
 
+{% macro contact_icon(name) %}
+{% if name == "phone" %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.58 1 1 0 0 1-.25 1z"/></svg>
+{% elif name == "office" %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg>
+{% elif name == "transport" %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
+{% else %}
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+{% endif %}
+{% endmacro %}
+
 {% macro contact_card(icon, title, lines) %}
 <div class="contact-card">
-  <div class="contact-card-icon" data-icon="{{ icon }}" aria-hidden="true"></div>
+  <div class="contact-card-icon" aria-hidden="true">{{ contact_icon(icon) }}</div>
   <h3>{{ title }}</h3>
   {% for line in lines %}<p>{{ line }}</p>{% endfor %}
 </div>

@@ -59,23 +59,102 @@
     });
   }
 
-  // Subtle reveal-on-scroll for section headers and cards.
+  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Subtle reveal-on-scroll for section headers and cards, staggered per
+  // item within its own grid so a row cascades in rather than popping at once.
   var revealTargets = document.querySelectorAll(
-    ".service-card, .capability-card, .why-card, .industry-card, .corporate-req-card, .info-card, .contact-card"
+    ".service-card, .capability-card, .why-card, .industry-card, .corporate-req-card, .info-card, .contact-card, .trust-item"
   );
   if ("IntersectionObserver" in window && revealTargets.length) {
-    revealTargets.forEach(function (el) { el.classList.add("reveal"); });
-    var observer = new IntersectionObserver(
+    var groupCounts = new Map();
+    revealTargets.forEach(function (el) {
+      el.classList.add("reveal");
+      var count = groupCounts.get(el.parentElement) || 0;
+      if (count > 0) el.style.transitionDelay = Math.min(count * 70, 420) + "ms";
+      groupCounts.set(el.parentElement, count + 1);
+    });
+    var revealObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.12 }
     );
-    revealTargets.forEach(function (el) { observer.observe(el); });
+    revealTargets.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  // Count-up: any element carrying .count-up with text starting in a number
+  // (e.g. "5+ Years Experience") animates that leading number from 0 when it
+  // scrolls into view. Non-numeric text is left untouched.
+  var countTargets = document.querySelectorAll(".count-up");
+  countTargets.forEach(function (el) {
+    var match = el.textContent.match(/^(\d+)(.*)$/);
+    if (!match) return;
+    var target = parseInt(match[1], 10);
+    var suffix = match[2];
+    var numberSpan = document.createElement("span");
+    numberSpan.className = "count-num";
+    numberSpan.textContent = prefersReducedMotion ? String(target) : "0";
+    el.textContent = "";
+    el.appendChild(numberSpan);
+    el.appendChild(document.createTextNode(suffix));
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) return;
+
+    var countObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          countObserver.unobserve(entry.target);
+          var start = null;
+          var duration = 900;
+          function step(timestamp) {
+            if (start === null) start = timestamp;
+            var progress = Math.min((timestamp - start) / duration, 1);
+            numberSpan.textContent = Math.round(progress * target);
+            if (progress < 1) window.requestAnimationFrame(step);
+          }
+          window.requestAnimationFrame(step);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    countObserver.observe(el);
+  });
+
+  // Subtle parallax drift on the hero image as the page scrolls.
+  var heroImageFrame = document.querySelector(".hero-image-frame");
+  if (heroImageFrame && !prefersReducedMotion) {
+    var ticking = false;
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () {
+          var offset = Math.min(window.scrollY * 0.12, 40);
+          heroImageFrame.style.transform = "translateY(" + offset + "px)";
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+  }
+
+  // Intro video: click-to-play (no autoplay, no preload) — native controls
+  // only appear once the visitor actually starts playback.
+  var introVideo = document.getElementById("introVideo");
+  var videoPlayBtn = document.getElementById("videoPlayBtn");
+  if (introVideo && videoPlayBtn) {
+    videoPlayBtn.addEventListener("click", function () {
+      introVideo.setAttribute("controls", "");
+      introVideo.play();
+      videoPlayBtn.hidden = true;
+    });
   }
 })();

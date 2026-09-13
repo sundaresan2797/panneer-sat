@@ -3,11 +3,23 @@
 
 {% block content %}
 
-<section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">{{ site.company_name }}</span>
-    <h1>{{ content.h1 }}</h1>
-    <p class="page-hero-subtitle">{{ content.intro }}</p>
+<section class="hero service-page-hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">{{ site.company_name }}</span>
+      <h1>{{ content.h1 }}</h1>
+      <p class="hero-desc">{{ content.intro }}</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="/{{ lang }}/contact">{{ ui.request_quote }}</a>
+        <a class="btn btn-outline" href="tel:{{ site.phones[0] }}">{{ ui.call_us }}</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-image-frame">
+        <img src="/static/images/services/heavy-vehicle.jpg" alt="{{ content.hero_image_alt }}" loading="eager">
+      </div>
+      <div class="hero-badge count-up">{{ content.hero_badge }}</div>
+    </div>
   </div>
 </section>
 
@@ -17,7 +29,7 @@
     <div class="vehicle-type-grid">
       {% for t in content.types %}
       <div class="vehicle-type-card">
-        <div class="vehicle-type-icon" aria-hidden="true"></div>
+        <div class="vehicle-type-icon" aria-hidden="true">{{ m.trust_icon(4) }}</div>
         <span>{{ t }}</span>
       </div>
       {% endfor %}

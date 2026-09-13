@@ -37,14 +37,12 @@
     document.body.style.overflow = "";
   }
 
-  if (grid) {
-    grid.querySelectorAll(".gallery-item").forEach(function (item) {
-      item.addEventListener("click", function () {
-        var img = item.querySelector("img");
-        openLightbox(item.getAttribute("data-full"), img ? img.alt : "");
-      });
+  document.querySelectorAll(".gallery-item, .gallery-featured").forEach(function (item) {
+    item.addEventListener("click", function () {
+      var img = item.querySelector("img");
+      openLightbox(item.getAttribute("data-full"), img ? img.alt : "");
     });
-  }
+  });
 
   if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
   if (lightbox) {

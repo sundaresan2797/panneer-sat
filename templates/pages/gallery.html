@@ -19,8 +19,14 @@
       {% endfor %}
     </div>
 
+    {% if gallery_photos %}
+    <button class="gallery-featured" type="button" data-full="/static/images/gallery/{{ gallery_photos[0].file }}" data-filter="{{ gallery_photos[0].category }}" aria-label="{{ gallery_photos[0].alt }}">
+      <img src="/static/images/gallery/{{ gallery_photos[0].file }}" alt="{{ gallery_photos[0].alt }}" loading="eager" style="object-position: {{ gallery_photos[0].position }}">
+    </button>
+    {% endif %}
+
     <div class="gallery-grid" id="galleryGrid">
-      {% for photo in gallery_photos %}
+      {% for photo in gallery_photos[1:] %}
       <button class="gallery-item" type="button" data-full="/static/images/gallery/{{ photo.file }}" data-filter="{{ photo.category }}" aria-label="{{ photo.alt }}">
         <img src="/static/images/gallery/{{ photo.file }}" alt="{{ photo.alt }}" loading="lazy" style="object-position: {{ photo.position }}" onerror="this.closest('.gallery-item').classList.add('img-fallback')">
         <div class="gallery-item-fallback" aria-hidden="true"></div>
@@ -40,5 +46,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="/static/js/gallery.js" defer></script>
+<script src="{{ asset_url('js/gallery.js') }}" defer></script>
 {% endblock %}

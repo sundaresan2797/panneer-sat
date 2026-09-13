@@ -3,16 +3,55 @@
 
 {% block content %}
 
-<section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">{{ site.company_name }}</span>
-    <h1>{{ content.h1 }}</h1>
+<section class="hero service-page-hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">{{ site.company_name }}</span>
+      <h1>{{ content.h1 }}</h1>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="/{{ lang }}/contact">{{ ui.request_quote }}</a>
+        <a class="btn btn-outline" href="tel:{{ site.phones[0] }}">{{ ui.call_us }}</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-image-frame">
+        <img src="/static/images/services/customer_relation.jpg" alt="Sri Annamalayar Transport & Logistics — trusted partnership with our customers" loading="eager">
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="reviews-section">
   <div class="container narrow text-center">
     <p class="reviews-note">{{ reviews_note }}</p>
+  </div>
+</section>
+
+<section class="trust-snapshot-section">
+  <div class="container">
+    {{ m.section_header(None, content.trust_title, content.trust_desc) }}
+    <div class="trust-snapshot-grid">
+      <div class="info-card">
+        <div class="info-card-icon" aria-hidden="true">{{ m.trust_icon(0) }}</div>
+        <h3 class="count-up">{{ content.years_badge }}</h3>
+        <p>{{ ui.call_us }}: <a href="tel:{{ site.phones[0] }}">{{ site.phones[0] }}</a></p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l4 4v14H8z"/><path d="M16 3v4h4"/><path d="M10 12h6M10 16h6"/></svg>
+        </div>
+        <h3>GSTIN</h3>
+        <p>{{ site.gstin }}</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon" aria-hidden="true">{{ m.contact_icon("office") }}</div>
+        <h3>{{ content.office_label }}</h3>
+        <p>{% for line in site.office_address %}{{ line }}<br>{% endfor %}</p>
+      </div>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-outline-dark" href="/{{ lang }}/gallery">{{ content.gallery_cta }}</a>
+    </div>
   </div>
 </section>
 

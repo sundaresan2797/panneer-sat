@@ -30,8 +30,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/style.css">
-<link rel="stylesheet" href="/static/css/responsive.css">
+<link rel="stylesheet" href="{{ asset_url('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset_url('css/responsive.css') }}">
 
 <script type="application/ld+json">
 {
@@ -76,8 +76,8 @@
 <button id="back-to-top" class="back-to-top" type="button" aria-label="{{ ui.back_to_top }}">&uarr;</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-<script src="/static/js/main.js" defer></script>
-<script src="/static/js/language.js" defer></script>
+<script src="{{ asset_url('js/main.js') }}" defer></script>
+<script src="{{ asset_url('js/language.js') }}" defer></script>
 {% block extra_js %}{% endblock %}
 </body>
 </html>

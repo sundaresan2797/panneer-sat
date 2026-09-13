@@ -24,7 +24,7 @@
           <span>{{ site.company_name }}</span>
         </div>
       </div>
-      <div class="hero-badge">{{ content.hero_badge }}</div>
+      <div class="hero-badge count-up">{{ content.hero_badge }}</div>
     </div>
   </div>
 </section>
@@ -32,7 +32,10 @@
 <section class="trust-strip">
   <div class="container trust-strip-inner">
     {% for item in trust_strip %}
-    <div class="trust-item">{{ item }}</div>
+    <div class="trust-item">
+      <span class="trust-icon">{{ m.trust_icon(loop.index0) }}</span>
+      <span class="trust-label count-up">{{ item }}</span>
+    </div>
     {% endfor %}
   </div>
 </section>
@@ -68,7 +71,7 @@
     {{ m.section_header(None, content.capabilities_title, None) }}
     <div class="capability-card-grid">
       {% for card in capability_cards %}
-      {{ m.capability_card(card) }}
+      {{ m.capability_card(card, loop.index0) }}
       {% endfor %}
     </div>
   </div>
@@ -79,7 +82,7 @@
     {{ m.section_header(None, content.industries_title, None) }}
     <div class="industry-card-grid">
       {% for name in industry_cards %}
-      {{ m.industry_card(name) }}
+      {{ m.industry_card(name, loop.index0) }}
       {% endfor %}
     </div>
   </div>
@@ -116,11 +119,7 @@
 <section class="about-section">
   <div class="container about-grid">
     <div class="about-media">
-      <img src="/static/images/company/company-01.jpg" alt="Sri Annamalayar Transport & Logistics team" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')">
-      <div class="about-media-fallback" aria-hidden="true">
-        <img src="/static/images/logo/logo-nav.png" alt="">
-        <span>{{ site.company_name }}</span>
-      </div>
+      <img src="/static/images/gallery/gallery-03.jpg" alt="Sri Annamalayar Transport & Logistics team outside the office" loading="lazy" style="object-position: center">
     </div>
     <div class="about-text">
       <h2>{{ content.about_title }}</h2>
@@ -132,11 +131,31 @@
   </div>
 </section>
 
+<section class="video-section">
+  <div class="container">
+    {{ m.section_header(None, content.video_title, content.video_subtitle) }}
+    <div class="video-player" id="introVideoPlayer">
+      <video id="introVideo" poster="/static/images/company/intro-video-poster.jpg" preload="none" playsinline aria-label="{{ content.video_title }}">
+        <source src="/static/videos/intro.mp4" type="video/mp4">
+      </video>
+      <button class="video-play-btn" type="button" id="videoPlayBtn" aria-label="{{ content.video_play_label }}">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
 <section class="gallery-preview-section">
   <div class="container">
     {{ m.section_header(None, content.gallery_title, content.gallery_subtitle) }}
+    {% if gallery_photos %}
+    <a class="gallery-preview-featured" href="/{{ lang }}/gallery">
+      <img src="/static/images/gallery/{{ gallery_photos[0].file }}" alt="{{ gallery_photos[0].alt }}" loading="lazy" style="object-position: {{ gallery_photos[0].position }}" onerror="this.parentElement.classList.add('img-fallback')">
+      <div class="gallery-thumb-fallback" aria-hidden="true"></div>
+    </a>
+    {% endif %}
     <div class="gallery-preview-grid">
-      {% for photo in gallery_photos %}
+      {% for photo in gallery_photos[1:] %}
       <div class="gallery-thumb">
         <img src="/static/images/gallery/{{ photo.file }}" alt="{{ photo.alt }}" loading="lazy" style="object-position: {{ photo.position }}" onerror="this.parentElement.classList.add('img-fallback')">
         <div class="gallery-thumb-fallback" aria-hidden="true"></div>

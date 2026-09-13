@@ -3,11 +3,26 @@
 
 {% block content %}
 
-<section class="page-hero">
-  <div class="container">
-    <span class="eyebrow">{{ site.company_name }}</span>
-    <h1>{{ content.h1 }}</h1>
-    <p class="page-hero-subtitle">{{ content.subtitle }}</p>
+<section class="hero service-page-hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">{{ site.company_name }}</span>
+      <h1>{{ content.h1 }}</h1>
+      <p class="hero-desc">{{ content.subtitle }}</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="/{{ lang }}/contact">{{ ui.request_quote }}</a>
+        <a class="btn btn-outline" href="tel:{{ site.phones[0] }}">{{ ui.call_us }}</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="service-collage">
+        {% for card in service_cards %}
+        <div class="service-collage-item">
+          <img src="{{ card.image }}" alt="{{ card.image_alt }}" loading="eager">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </section>
 
