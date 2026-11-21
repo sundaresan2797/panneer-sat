@@ -1,0 +1,22 @@
+{% extends "sagbs/base.html" %}{% import "sagbs/components/macros.html" as m %}
+{% block content %}{{ m.page_intro('YOUR PRIVACY', 'How we use\nyour details.', 'Here is what happens to the details you send through our contact form or price request form.') }}
+<section class="section section-topless"><div class="container legal-copy">
+<h2>What we collect</h2>
+<p>We collect the details you enter in the form. These include your name, company name, email, phone number and country. We also save the service you choose, how often you need help, your budget if you give one, and your message.</p>
+<p>We record when you send the message and when you agree that we may reply. Your message gets a reference number so we can find it later.</p>
+<h2>Why we use your details</h2>
+<p>We use your details to understand the work, reply to you and discuss a price. Sending a message does not add you to a marketing list.</p>
+<h2>Where your message is saved</h2>
+<p>Your message is saved in our website’s database. It may also be sent to our team by email. The companies that provide our website hosting, database and email may handle these details to run those services.</p>
+<p>Access should be limited to people who need to handle your message. We do not sell your details.</p>
+<h2>How long we keep your details</h2>
+<p>We keep them while they are needed for your enquiry, any work we agree to do, and any records we must keep by law.</p>
+<p>You can ask to see, correct or delete your details. Email <a href="mailto:{{ email }}">{{ email }}</a>. We may ask you to confirm who you are. Some records may need to be kept by law.</p>
+<h2>WhatsApp and other website features</h2>
+<p>A WhatsApp link opens WhatsApp, which has its own privacy rules. We use Google Fonts to show the website’s text style. Your browser may contact Google to load these fonts.</p>
+<p>The sample reports and bill checker use made-up records on your device. They do not send your files to us. The contact form uses a temporary reference to help avoid saving the same message twice by mistake.</p>
+<h2>Do not send private records through this form</h2>
+<p>Please do not send passwords, identity documents, bank details, medical records or other private records. If the work needs private records, we will first agree on how to share and handle them.</p>
+<h2>Contact us</h2>
+<p>{{ company.name }}<br>{{ company.locations }}<br><a href="mailto:{{ email }}">{{ email }}</a></p>
+</div></section>{% endblock %}

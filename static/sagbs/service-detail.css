@@ -1,0 +1,53 @@
+.service-brief { --paper: #f2edf8; --pen: #593a79; --edge: #c8b8d9; }
+.brief-teal { --paper: #eaf3ed; --pen: #315e49; --edge: #aecdb9; }
+.brief-orange { --paper: #fbefe6; --pen: #854923; --edge: #e6c6ac; }
+.brief-cover { background: var(--paper); padding-block: 1.6rem clamp(3rem, 5vw, 5rem); }
+.brief-cover .breadcrumbs { margin: 0 0 clamp(2rem, 4vw, 3.7rem); font-size: .875rem; color: var(--pen); flex-wrap: wrap; }
+.brief-cover .breadcrumbs a, .brief-link { text-decoration: underline; text-underline-offset: .24em; }
+.brief-columns { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: clamp(2rem, 6vw, 6rem); }
+.brief-cover h1 { margin: 0; font-size: clamp(2.85rem, 4.8vw, 4.75rem); line-height: 1.05; letter-spacing: -.06em; text-wrap: balance; }
+.brief-lead { margin: 1.3rem 0 1.7rem; max-width: 48ch; font-size: 1.125rem; color: #504958; }
+.brief-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.5rem; }
+.service-brief .button { border-radius: 100px; }
+.brief-link { display: inline-block; color: var(--pen); font-weight: 650; padding-block: .55rem; }
+.brief-link:hover { text-decoration-thickness: 2px; }
+.brief-sheet { background: white; padding: clamp(1.5rem, 3vw, 2.75rem); border-radius: .45rem; border-top: .35rem solid var(--pen); box-shadow: .45rem .45rem var(--edge); margin-right: .45rem; }
+.sheet-label { display: flex; gap: .6rem; align-items: center; font-size: .9375rem; font-weight: 650; color: var(--pen); margin-bottom: .85rem; }
+.brief-sheet h2, .brief-example h2 { font: italic 400 clamp(2rem, 3vw, 3rem)/1.1 Georgia, serif; letter-spacing: -.045em; }
+.brief-sheet ul, .brief-tools ul { list-style: none; padding: 0; margin: 1rem 0 0; }
+.brief-sheet li { display: flex; align-items: baseline; gap: .75rem; padding: .65rem 0; border-top: 1px solid #e6e2e9; }
+.brief-sheet li:last-child { padding-bottom: 0; }
+.brief-sheet li i { color: var(--pen); }
+.brief-section, .brief-example { padding-block: clamp(3.1rem, 6vw, 5.25rem); }
+.brief-section h2 { font-size: clamp(2rem, 3.2vw, 3rem); }
+.brief-scope, .brief-close { align-items: start; }
+.brief-scope > div > p { max-width: 47ch; margin: 1rem 0 0; }
+.brief-details details { border-bottom: 1px solid #dbd5e2; }
+.brief-details details:first-child { border-top: 1px solid #dbd5e2; }
+.brief-details summary { cursor: pointer; display: flex; justify-content: space-between; gap: .75rem; align-items: center; padding: 1rem .2rem; font: 650 1.1rem/1.4 var(--heading); list-style: none; }
+.brief-details summary::-webkit-details-marker { display: none; }
+.brief-details summary::after { content: ''; width: .62rem; height: .62rem; border-right: 2px solid var(--pen); border-bottom: 2px solid var(--pen); transform: rotate(45deg); flex: none; margin: 0 .35rem .3rem; }
+.brief-details details[open] > summary::after { transform: rotate(225deg); margin-bottom: -.25rem; }
+.brief-details summary:hover { color: var(--pen); background: var(--paper); }
+.brief-details summary:focus-visible { outline: 3px solid var(--pen); outline-offset: 1px; }
+.brief-details ul { padding-left: 1.5rem; color: #534e5d; }
+.brief-details li { padding: .2rem 0 .2rem .2rem; }
+.brief-details li::marker { color: var(--pen); }
+.brief-specialist { margin-top: 1.5rem; padding: 1.3rem; background: var(--paper); border-left: 3px solid var(--pen); }
+.brief-specialist p, .brief-example p { margin: .75rem 0 0; }
+.brief-example { background: #302739; }
+.brief-example h2, .brief-example h3 { color: #fff; }
+.brief-example p { color: #eae3ee; font-size: 1.1rem; max-width: 47ch; }
+.brief-tools { border-left: 1px solid #786983; padding-left: clamp(1.5rem, 3vw, 3rem); }
+.brief-tools ul { display: flex; flex-wrap: wrap; gap: .5rem; }
+.brief-tools li { border: 1px solid #796985; color: #f7f2fb; padding: .35rem .8rem; border-radius: 3rem; font-size: .9375rem; }
+.brief-tools .brief-link { color: #e1cbf5; margin-top: .65rem; }
+.brief-close .brief-details { margin-block: 1.25rem .5rem; }
+.brief-monthly { background: var(--paper); padding: clamp(1.5rem, 3vw, 2.75rem); border-radius: 1rem; }
+.brief-monthly > i { color: var(--pen); font-size: 1.6rem; }
+.brief-monthly h2 { margin: .7rem 0; }
+.brief-monthly em { font: italic 400 1em Georgia, serif; color: var(--pen); }
+@media (max-width: 767px) {
+  .brief-columns { grid-template-columns: minmax(0, 1fr); gap: 1.8rem; }
+  .brief-tools { border: 0; border-top: 1px solid #786983; padding: 1.5rem 0 0; }
+}

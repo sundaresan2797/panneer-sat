@@ -21,3 +21,9 @@ __pycache__/
 .DS_Store
 .vscode/
 .idea/
+
+# Local SAGBS enquiry data
+data/
+*.db
+*.db-shm
+*.db-wal

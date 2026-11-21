@@ -71,7 +71,7 @@
       <p>{{ desc }}</p>
     </div>
     <div class="cta-actions">
-      <a class="btn btn-accent" href="/{{ lang }}/contact">{{ ui.request_quote }}</a>
+      <a class="btn btn-accent" href="/sat/{{ lang }}/contact">{{ ui.request_quote }}</a>
       <a class="btn btn-outline-light" href="tel:{{ site.phones[0] }}">{{ ui.call_us }}</a>
       {% if style == "corporate" and whatsapp_number %}
       <a class="btn btn-whatsapp" href="https://wa.me/{{ whatsapp_number }}?text={{ (whatsapp_message or '') | urlencode }}" target="_blank" rel="noopener">{{ ui.whatsapp }}</a>

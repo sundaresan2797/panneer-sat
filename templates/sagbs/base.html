@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="theme-color" content="#17162b">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sri Annamalai Global Business Solutions">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:image" content="{{ site_url }}{{ asset_url('sagbs/social-card.png') }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="{{ site_url }}{{ asset_url('sagbs/social-card.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset_url('images/SAGBS_LOGO.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset_url('images/SAGBS_LOGO.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset_url('vendor/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('vendor/bootstrap-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('vendor/lenis.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('sagbs/site.css') }}">
+  <noscript><style>.navbar-collapse.collapse { display: block; } .navbar-toggler { display: none; }</style></noscript>
+  <script type="application/ld+json">{{ organisation_schema | tojson }}</script>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="sagbs-site">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="topline"><div class="container"><span>Help for your business. <span class="topline-extra">From SAGBS.</span></span><a href="/">SAT & SAGBS <i class="bi bi-grid" aria-hidden="true"></i></a></div></div>
+  {% include "sagbs/components/header.html" %}
+  <main id="main-content">{% block content %}{% endblock %}</main>
+  {% include "sagbs/components/footer.html" %}
+  {% if phones %}<a class="whatsapp-float" href="https://wa.me/{{ phones[0] }}?text={{ 'Hello SAGBS, I would like to discuss a business requirement.' | urlencode }}" aria-label="Chat with SAGBS on WhatsApp" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>{% endif %}
+  <script src="{{ asset_url('vendor/bootstrap.bundle.min.js') }}" defer></script>
+  <script src="{{ asset_url('vendor/gsap.min.js') }}" defer></script>
+  <script src="{{ asset_url('vendor/ScrollTrigger.min.js') }}" defer></script>
+  <script src="{{ asset_url('vendor/lenis.min.js') }}" defer></script>
+  {% if page == 'home' %}<script src="{{ asset_url('vendor/lottie_light.min.js') }}" defer></script>{% endif %}
+  <script src="{{ asset_url('sagbs/site.js') }}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

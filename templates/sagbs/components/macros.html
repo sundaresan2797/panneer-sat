@@ -1,0 +1,36 @@
+{% macro icon(name, class='') %}<i class="bi bi-{{ name }} {{ class }}" aria-hidden="true"></i>{% endmacro %}
+
+{% macro service_card(service) %}
+<a class="service-card accent-{{ service.accent }}" href="/sagbs/services/{{ service.slug }}" data-reveal>
+  <div class="service-card-top"><span class="icon-box">{{ icon(service.icon) }}</span><span class="card-plus" aria-hidden="true">+</span></div>
+  <span class="small-label">{{ service.category }}</span><h3>{{ service.title }}</h3><p>{{ service.summary }}</p>
+</a>
+{% endmacro %}
+
+{% macro section_head(eyebrow, title, desc='', link='', label='') %}
+<div class="section-head" data-reveal><div><p class="eyebrow">{{ eyebrow }}</p><h2>{{ title }}</h2></div><div class="section-head-aside">{% if desc %}<p>{{ desc }}</p>{% endif %}{% if link %}<a class="text-link" href="{{ link }}">{{ label }} {{ icon('plus-lg') }}</a>{% endif %}</div></div>
+{% endmacro %}
+
+{% macro page_intro(eyebrow, title, description) %}
+<section class="page-intro"><div class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/sagbs">Home</a><span aria-hidden="true">/</span><span>{{ eyebrow }}</span></nav><p class="eyebrow" data-intro>{{ eyebrow }}</p><h1 data-intro>{{ title }}</h1><p class="page-lead" data-intro>{{ description }}</p></div></section>
+{% endmacro %}
+
+{% macro cta(title='Tell us what help you need.', desc='Need one job done or help every month? Talk to our team.') %}
+<section class="cta-section"><div class="container"><div class="cta-box" data-reveal><div><p class="eyebrow">GET IN TOUCH</p><h2>{{ title }}</h2><p>{{ desc }}</p></div><a class="button button-light" href="/sagbs/request-quote">Talk to us for free {{ icon('chat-square-text') }}</a></div></div></section>
+{% endmacro %}
+
+{% macro process_grid(process) %}
+<div class="process-grid">{% for step in process %}<article class="process-step" data-reveal><span class="process-icon">{{ icon(step.icon) }}</span><h3>{{ step.title }}</h3><p>{{ step.desc }}</p></article>{% endfor %}</div>
+{% endmacro %}
+
+{% macro project_card(project, preview=false) %}
+{% if preview %}<div class="project-card">{% else %}
+<a class="project-card" href="/sagbs/work/{{ project.slug }}" data-project-type="{{ project.type }}" data-reveal>
+{% endif %}
+  <div class="project-preview preview-{{ project.theme }}" aria-hidden="true">
+    {% if project.theme == 'dashboard' %}<div class="mini-dashboard"><div class="mini-top"><span>Delivery report</span><span>Sample only</span></div><div class="mini-kpis"><div>Orders<strong>248</strong></div><div>On time<strong>92%</strong></div><div>Problems to check<strong>12</strong></div></div><div class="mini-chart">{% for height in [35,52,43,68,55,80,63,94,72,88,76,100] %}<span style="--bar:{{ height }}%"></span>{% endfor %}</div></div>
+    {% elif project.theme == 'workflow' %}<div class="mini-workflow"><div>{{ icon('file-earmark-spreadsheet') }} Sample bills</div><span class="workflow-connector"></span><div>{{ icon('funnel') }} Check & sort</div><span class="workflow-connector"></span><div class="workflow-result">{{ icon('check-circle') }} Ready to check</div></div>
+    {% else %}<div class="mini-website"><div><strong>SAGBS</strong><span>Data · Technology · Business</span></div><h4>Make your<br>work easier.</h4><span class="mini-button">Tell us what you need</span><div class="mini-site-grid"><span>Data</span><span>Technology</span><span>Business</span></div></div>{% endif %}
+  </div>
+  {% if not preview %}<div class="project-copy"><span class="small-label">{{ project.label }}</span><h3>{{ project.title }}</h3><p>{{ project.desc }}</p><span class="text-link">See this example {{ icon('plus-lg') }}</span></div></a>{% else %}</div>{% endif %}
+{% endmacro %}

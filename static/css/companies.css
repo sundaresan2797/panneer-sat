@@ -1,0 +1,50 @@
+:root { color-scheme: light; --ink: #102940; --muted: #586777; --orange: #e0692c; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100svh; display: flex; flex-direction: column; color: var(--ink); background: #f3f6f9; font: 1rem/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 3px solid var(--orange); outline-offset: 6px; }
+.portal-header, .portal-footer { width: min(1200px, 100%); margin-inline: auto; padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.portal-brand { font-size: 1.2rem; font-weight: 800; letter-spacing: -.03em; }
+.portal-brand span { color: #788695; padding-inline: 6px; font-weight: 400; }
+.header-caption, .portal-footer { color: var(--muted); font-size: .875rem; }
+main { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; min-width: 0; }
+.selection { width: min(1200px, 100%); margin: auto; padding: 55px 40px 72px; }
+.intro { margin-bottom: 36px; }
+.eyebrow { color: #725136; font-size: .875rem; font-weight: 750; letter-spacing: .16em; margin: 0 0 16px; }
+h1 { font-size: clamp(2.6rem, 5vw, 4.25rem); line-height: 1.08; letter-spacing: -.055em; margin: 0 0 22px; font-weight: 750; }
+.intro-copy { font-size: 1.125rem; margin: 0 0 8px; color: var(--muted); }
+.tamil-copy { color: var(--muted); font-size: .9375rem; margin: 0; line-height: 1.9; overflow-wrap: anywhere; }
+.company-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.company-card { min-height: 385px; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; overflow: hidden; position: relative; transition: transform .2s, box-shadow .2s; }
+.company-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px #10294018; }
+.sat-card { background: radial-gradient(ellipse at 100% 0, #245882 0, transparent 65%), #0b2545; color: #fff; }
+.sagbs-card { background: #fff; border: 1px solid #dbe2e9; }
+.card-top img.sagbs-logo { width: 87px; max-width: 87px; height: 58px; padding: 0; object-fit: contain; }
+.card-top { min-height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.card-top img { max-width: 62px; height: 58px; object-fit: contain; background: #fff; border-radius: 10px; padding: 7px; }
+.company-label { font-size: .875rem; font-weight: 700; letter-spacing: .09em; }
+.sat-card .company-label { color: #f6b994; }
+.coming-soon { padding: 5px 12px; border: 1px solid #dbe2e9; border-radius: 30px; font-size: .875rem; color: var(--muted); white-space: nowrap; }
+.card-content { flex: 1; padding-top: 24px; }
+h2 { font-size: 3.25rem; line-height: 1; margin: 0 0 16px; letter-spacing: -.045em; }
+.company-name { font-size: 1.125rem; line-height: 1.45; font-weight: 600; margin: 0 0 12px; }
+.company-description { max-width: 350px; color: var(--muted); margin: 0 0 28px; }
+.sat-card .company-description { color: #c8d6e4; }
+.card-action { padding-top: 18px; border-top: 1px solid #dbe2e9; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+.sat-card .card-action { border-color: #ffffff30; }
+.action-mark { font-size: 1.5rem; line-height: 1; font-weight: 400; }
+.portal-footer { border-top: 1px solid #dbe2e9; }
+.holding-page { width: min(1200px, 100%); margin: auto; padding: 90px 40px; }
+.holding-page > p:not(.eyebrow) { color: var(--muted); font-size: 1.125rem; }
+.return-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 24px; padding: 13px 22px; min-height: 48px; background: var(--ink); color: #fff; border-radius: 8px; font-weight: 650; }
+.return-link:hover { background: #204866; }
+@media (max-width: 640px) {
+  .portal-header, .portal-footer { padding: 22px 24px; }
+  .header-caption { display: none; }
+  .selection { padding: 34px 24px 48px; }
+  .company-grid { grid-template-columns: 1fr; gap: 18px; }
+  .company-card { padding: 24px; min-height: 360px; }
+  .portal-footer { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .holding-page { padding: 60px 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .company-card { transition: none; } .company-card:hover { transform: none; } }

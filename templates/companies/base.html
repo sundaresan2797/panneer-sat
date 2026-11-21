@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Choose Your Company | SAT & SAGBS{% endblock %}</title>
+  <meta name="description" content="Choose SAT or SAGBS to visit the company website.">
+  {% block metadata %}{% endblock %}
+  <link rel="stylesheet" href="{{ asset_url('css/companies.css') }}">
+</head>
+<body>
+  <header class="portal-header">
+    <a class="portal-brand" href="/" aria-label="SAT and SAGBS company selection">SAT <span>&</span> SAGBS</a>
+    <span class="header-caption">Two companies. One place to begin.</span>
+  </header>
+  <main id="main-content">{% block content %}{% endblock %}</main>
+  <footer class="portal-footer">SAT & SAGBS <span>Choose the company you’d like to visit.</span></footer>
+</body>
+</html>

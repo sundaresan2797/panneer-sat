@@ -1,0 +1,35 @@
+.enquiry-page { --wash: #eaf2ee; --accent: #355e4a; --rule: #b5cbbc; background: linear-gradient(to bottom,var(--wash) 25rem,#faf9fb 25rem); padding-block: 1.5rem clamp(3rem,6vw,5.5rem); }
+.price-page { --wash: #efeaf6; --accent: #64447c; --rule: #c9b7da; }
+.enquiry-page .breadcrumbs { color: var(--accent); font-size: .875rem; margin-bottom: clamp(2rem,4vw,3.6rem); }
+.enquiry-page a:not(.button) { text-decoration: underline; text-underline-offset: .22em; }
+.enquiry-layout { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); grid-template-rows: auto 1fr; grid-template-areas: 'intro form' 'reach form'; align-items: start; gap: 2rem clamp(2rem,5vw,5rem); }
+.enquiry-intro { grid-area: intro; }
+.enquiry-intro h1 { margin: 0; font-size: clamp(3.3rem,5.8vw,5.6rem); line-height: 1.04; letter-spacing: -.06em; }
+.enquiry-intro em { display: inline-block; font: italic 400 1em Georgia,serif; color: var(--accent); letter-spacing: -.055em; }
+.enquiry-intro p { max-width: 37ch; font-size: 1.125rem; color: #514c56; margin: 1.2rem 0 .7rem; }
+.enquiry-jumps, .reach-actions { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; }
+.enquiry-jumps a, .reach-card a { color: var(--accent); font-weight: 600; }
+.enquiry-jumps a, .reach-actions a { display: inline-flex; align-items: center; min-height: 44px; gap: .4rem; }
+.reach-card, .enquiry-paper { border-radius: 1rem; background: #fff; padding: clamp(1.4rem,3vw,2.6rem); border: 1px solid #ded9e1; }
+.reach-card { grid-area: reach; border-top: .3rem solid var(--rule); }
+.reach-card h2 { font-size: 1.5rem; }
+.reach-location { display: flex; align-items: baseline; gap: .5rem; }
+.reach-method { border-top: 1px solid #e3dfe5; margin-top: 1rem; padding-top: 1rem; }
+.reach-method h3 { display: flex; align-items: center; gap: .65rem; font-size: 1.06rem; }
+.reach-method a { overflow-wrap: anywhere; }
+.reach-actions a { border: 1px solid var(--rule); border-radius: 3rem; padding: .35rem .95rem; }
+.enquiry-page .reach-actions a { text-decoration: none; }
+.reach-actions a:hover { background: var(--wash); }
+.enquiry-paper { grid-area: form; box-shadow: 0 .5rem 2rem #28202d08; }
+.enquiry-paper > h2 { font-size: clamp(1.65rem,2.5vw,2.4rem); }
+.required-note { font-size: .9rem; margin-bottom: 1.6rem; }
+.enquiry-paper fieldset { min-width: 0; margin: 0 0 1rem; }
+.enquiry-paper legend { float: none; width: 100%; padding: .6rem .8rem; margin-bottom: 1rem; background: var(--wash); color: var(--accent); font: 650 1.05rem var(--heading); border-radius: .35rem; }
+.enquiry-paper .field input:not([type="checkbox"]), .enquiry-paper .field textarea, .enquiry-paper .field select { font-size: 1rem; }
+.enquiry-paper .field select { padding-right: 2.25rem; }
+.enquiry-paper .submit-button { width: auto; border-radius: 3rem; gap: .75rem; }
+@media (max-width: 850px) {
+  .enquiry-layout { grid-template-columns: minmax(0,1fr); grid-template-areas: 'intro' 'reach' 'form'; grid-template-rows: auto; }
+  .price-page .enquiry-layout { grid-template-areas: 'intro' 'form' 'reach'; }
+}
+@media (scripting: none) and (max-width: 1199px) { .site-header { position: static; } }

@@ -1,0 +1,55 @@
+.sector-cover { background: #f7ede5; padding-block: 1.5rem clamp(3rem, 5vw, 5rem); }
+.sector-cover .breadcrumbs { margin-bottom: clamp(1.6rem, 3vw, 3rem); color: #674b3c; font-size: .875rem; }
+.sector-cover .breadcrumbs a, .sector-link, .sector-return { text-decoration: underline; text-underline-offset: .24em; }
+.sector-opening { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: clamp(2rem, 6vw, 6rem); }
+.sector-intro h1 { color: #392c32; font-size: clamp(3.6rem, 6vw, 6rem); line-height: 1.02; letter-spacing: -.065em; margin: 0; }
+.sector-intro h1 em { display: block; font-family: Georgia, serif; font-weight: 400; color: #814a30; }
+.sector-intro p { color: #564b48; max-width: 38ch; margin: 1.35rem 0 .6rem; font-size: clamp(1.05rem, 1.35vw, 1.2rem); }
+.sector-link, .sector-return { display: inline-block; padding-block: .55rem; color: #553a68; font-weight: 650; }
+.sector-picker { padding: clamp(1.15rem, 2.5vw, 2rem); background: #fff; border-radius: .7rem 2rem .7rem .7rem; box-shadow: .4rem .45rem #e2d2c8; margin-right: .4rem; }
+.sector-picker h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+.sector-picker ul, .sector-answer ul { margin: 0; padding: 0; list-style: none; }
+.sector-picker ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem; }
+.sector-picker a { display: flex; height: 100%; flex-direction: column; align-items: flex-start; gap: .45rem; padding: .85rem; border-radius: .45rem; color: #402f48; background: #f4eff6; font-weight: 600; font-size: .9375rem; line-height: 1.35; }
+.sector-picker li:nth-child(3n + 2) a { background: #ebf2ed; color: #2e503e; }
+.sector-picker li:nth-child(3n) a { background: #fbf1e8; color: #69422c; }
+.sector-picker a:hover span { text-decoration: underline; text-underline-offset: .2em; }
+.sector-picker i { font-size: 1.25rem; }
+.sector-directory { padding-block: clamp(2.5rem, 5vw, 4.5rem) 0; }
+.sector-entry { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 6vw, 6rem); padding: clamp(1.5rem, 3vw, 2.75rem); border-top: 1px solid #dcd4de; }
+.sector-entry:target { background: #f6f3f9; border-top-color: #7b6191; }
+.sector-entry:focus-visible, .sector-picker h2:focus-visible { outline: 2px solid var(--purple-dark); outline-offset: 2px; }
+.sector-context { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 1rem; }
+.sector-symbol { width: 2.85rem; height: 2.85rem; display: grid; place-items: center; border-radius: .7rem; background: #eee7f4; color: #654579; font-size: 1.35rem; }
+.sector-entry:nth-child(3n + 2) .sector-symbol { background: #e4efe8; color: #345941; }
+.sector-entry:nth-child(3n) .sector-symbol { background: #f7e9dc; color: #77452a; }
+.sector-context h2, .sector-footer h2 { font-size: clamp(1.6rem, 2.4vw, 2.45rem); line-height: 1.15; }
+.sector-context p, .sector-footer p { margin: .7rem 0 0; }
+.sector-answer h3 { font-size: 1.125rem; }
+.sector-answer p { margin-bottom: .85rem; }
+.sector-answer ul { display: flex; flex-wrap: wrap; gap: .5rem; }
+.sector-answer li a { display: inline-flex; align-items: center; min-height: 44px; border: 1px solid #d7cadd; border-radius: 3rem; padding: .45rem .95rem; font-size: .9375rem; color: #513a66; background: #fff; }
+.sector-answer li a:hover { border-color: #8e74a0; background: #f1ebf6; }
+.sector-return { font-size: .875rem; margin-top: .4rem; }
+.sector-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.4rem; padding-block: clamp(2.5rem, 5vw, 4.5rem); border-top: 1px solid var(--line); }
+.sector-footer .button { border-radius: 4rem; }
+@media (max-width: 991px) {
+  .sector-opening { grid-template-columns: .75fr 1.25fr; gap: 1.75rem; }
+  .sector-picker ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sector-entry { padding-inline: .5rem; gap: 2rem; }
+}
+@media (max-width: 767px) {
+  .sector-opening, .sector-entry { grid-template-columns: minmax(0, 1fr); }
+  .sector-intro h1 em { display: inline; }
+  .sector-picker ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sector-picker li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .sector-picker a { min-height: 44px; padding: .65rem; }
+  .sector-entry { gap: 1.25rem; }
+}
+@media (max-width: 379px) {
+  .sector-picker ul { grid-template-columns: 1fr; }
+  .sector-picker a { flex-direction: row; align-items: center; }
+}
+@media (scripting: none) and (max-width: 1199px) {
+  .site-header { position: static; }
+}

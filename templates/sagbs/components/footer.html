@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-intro"><a class="brand" href="/sagbs"><img class="brand-logo" src="{{ asset_url('images/SAGBS_LOGO.png') }}" alt="" width="66" height="44" loading="lazy"><span>SAGBS<small>GLOBAL BUSINESS SOLUTIONS</small></span></a><p>{{ company.tagline }}</p><p class="footer-company">{{ company.name }}<br>{{ company.locations }}</p></div>
+      <div><h2>Find a page</h2><a href="/sagbs/about">About us</a><a href="/sagbs/industries">Who we help</a><a href="/sagbs/technology">Tools we use</a><a href="/sagbs/work">Sample work</a><a href="/sagbs/request-quote">Ask for a price</a></div>
+      <div><h2>Our services</h2>{% for service in services %}<a href="/sagbs/services/{{ service.slug }}">{{ service.short_title }}</a>{% endfor %}</div>
+      <div class="footer-contact"><h2>Contact us</h2>{% if email %}<a href="mailto:{{ email }}">{{ email }}</a>{% endif %}{% for phone in phones %}<a href="tel:+{{ phone }}">+{{ phone[:2] }} {{ phone[2:7] }} {{ phone[7:] }}</a>{% endfor %}<a class="footer-contact-link" href="/sagbs/contact">Talk to our team <i class="bi bi-chat-square-text" aria-hidden="true"></i></a></div>
+    </div>
+    <div class="footer-bottom"><span>© {{ year }} SAGBS. All rights reserved.</span><div><a href="/sagbs/privacy">Your privacy</a><a href="/">Choose company</a><a href="/sat">Visit SAT</a></div></div>
+  </div>
+</footer>

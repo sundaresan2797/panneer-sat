@@ -1,0 +1,101 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ asset_url('sagbs/service-detail.css') }}">
+<script type="application/ld+json">{{ service_schema | tojson }}</script>
+{% endblock %}
+{% block content %}
+{% set quote = '/sagbs/request-quote?service=' ~ service.slug %}
+<div class="service-brief brief-{{ service.accent }}">
+  <section class="brief-cover" aria-labelledby="brief-title">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/sagbs">Home</a><span aria-hidden="true">/</span>
+        <a href="/sagbs/services">Services</a><span aria-hidden="true">/</span>
+        <span aria-current="page">{{ service.short_title }}</span>
+      </nav>
+      <div class="brief-columns">
+        <div>
+          <h1 id="brief-title" data-intro>{{ service.headline }}</h1>
+          <p class="brief-lead" data-intro>{{ service.summary }}</p>
+          <div class="brief-actions" data-intro>
+            <a class="button button-dark" href="{{ quote }}">Ask for a price</a>
+            <a class="brief-link" href="#service-tasks">See the tasks</a>
+          </div>
+        </div>
+        <aside class="brief-sheet" aria-labelledby="sheet-title" data-intro>
+          <div class="sheet-label">{{ m.icon(service.icon) }} {{ service.short_title }}</div>
+          <h2 id="sheet-title">What you’ll get</h2>
+          <ul>
+            {% for item in service.deliverables %}
+            <li>{{ m.icon('check2') }}<span>{{ item }}</span></li>
+            {% endfor %}
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="brief-section">
+    <div class="container brief-columns brief-scope">
+      <div>
+        <h2 id="service-tasks" tabindex="-1">What we can do</h2>
+        <p>{{ service.intro }}</p>
+      </div>
+      <div class="brief-details">
+        {% for heading, items in service.groups %}
+        <details {% if loop.first %}open{% endif %}>
+          <summary>{{ heading }}</summary>
+          <ul>{% for item in items %}<li>{{ item }}</li>{% endfor %}</ul>
+        </details>
+        {% endfor %}
+        {% if service.specialist | default([]) %}
+        <aside class="brief-specialist">
+          <h3>Want to ask about AI?</h3>
+          <p>{{ service.specialist | join(' and ') }} are ideas to discuss, not services we already provide. AI means software that learns from examples. We’ll check what you need, which records we can use and what a person needs to review before we confirm whether we can help.</p>
+        </aside>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="brief-example">
+    <div class="container brief-columns">
+      <div>
+        <h2>A made-up example</h2>
+        <p>{{ service.example }}</p>
+      </div>
+      <div class="brief-tools">
+        <h3>Tools we may use</h3>
+        <ul>{% for tool in service.tools %}<li>{{ tool }}</li>{% endfor %}</ul>
+        <a class="brief-link" href="/sagbs/technology">See what these tools do</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="brief-section">
+    <div class="container brief-columns brief-close">
+      <div>
+        <h2>Before you start</h2>
+        <div class="brief-details">
+          <details open>
+            <summary>What should I tell you?</summary>
+            <p>Tell us what needs doing, how much work there is and when you need it. A short description is enough. Keep private records out of the form.</p>
+          </details>
+          <details>
+            <summary>How much will it cost?</summary>
+            <p>The price depends on the work and time needed. We’ll explain the cost and agree on it with you before we start.</p>
+          </details>
+        </div>
+        <a class="brief-link" href="{{ quote }}">Ask about this service</a>
+      </div>
+      <div class="brief-monthly">
+        {{ m.icon('calendar2-check') }}
+        <h2>Need help <em>every month?</em></h2>
+        <p>{{ service.monthly }}</p>
+        <a class="button button-dark" href="{{ quote }}&amp;engagement=monthly">Ask about monthly help</a>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

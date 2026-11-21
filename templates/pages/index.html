@@ -11,7 +11,7 @@
       <p class="hero-desc">{{ content.hero_desc }}</p>
       <p class="hero-support">{{ content.hero_support }}</p>
       <div class="hero-actions">
-        <a class="btn btn-accent" href="/{{ lang }}/contact">{{ ui.request_quote }}</a>
+        <a class="btn btn-accent" href="/sat/{{ lang }}/contact">{{ ui.request_quote }}</a>
         <a class="btn btn-outline" href="tel:{{ site.phones[0] }}">{{ ui.call_us }}</a>
       </div>
       <a class="hero-explore" href="#services">{{ ui.explore_services }} &darr;</a>
@@ -45,7 +45,7 @@
     <div>
       <h2>{{ content.positioning_title }}</h2>
       <p>{{ content.positioning_desc }}</p>
-      <a class="btn btn-outline-dark" href="/{{ lang }}/contact">{{ content.positioning_cta }}</a>
+      <a class="btn btn-outline-dark" href="/sat/{{ lang }}/contact">{{ content.positioning_cta }}</a>
     </div>
     <ul class="positioning-points">
       {% for point in content.positioning_points %}
@@ -100,7 +100,7 @@
       {% endfor %}
     </div>
     <div class="text-center">
-      <a class="btn btn-accent" href="/{{ lang }}/contact">{{ corporate_requirements.cta }}</a>
+      <a class="btn btn-accent" href="/sat/{{ lang }}/contact">{{ corporate_requirements.cta }}</a>
     </div>
   </div>
 </section>
@@ -126,7 +126,7 @@
       {% for para in content.about_body %}
       <p>{{ para }}</p>
       {% endfor %}
-      <a class="btn btn-outline-dark" href="/{{ lang }}/about">{{ content.about_cta }}</a>
+      <a class="btn btn-outline-dark" href="/sat/{{ lang }}/about">{{ content.about_cta }}</a>
     </div>
   </div>
 </section>
@@ -149,7 +149,7 @@
   <div class="container">
     {{ m.section_header(None, content.gallery_title, content.gallery_subtitle) }}
     {% if gallery_photos %}
-    <a class="gallery-preview-featured" href="/{{ lang }}/gallery">
+    <a class="gallery-preview-featured" href="/sat/{{ lang }}/gallery">
       <img src="/static/images/gallery/{{ gallery_photos[0].file }}" alt="{{ gallery_photos[0].alt }}" loading="lazy" style="object-position: {{ gallery_photos[0].position }}" onerror="this.parentElement.classList.add('img-fallback')">
       <div class="gallery-thumb-fallback" aria-hidden="true"></div>
     </a>
@@ -163,7 +163,7 @@
       {% endfor %}
     </div>
     <div class="text-center">
-      <a class="btn btn-outline-dark" href="/{{ lang }}/gallery">{{ ui.read_more }}</a>
+      <a class="btn btn-outline-dark" href="/sat/{{ lang }}/gallery">{{ ui.read_more }}</a>
     </div>
   </div>
 </section>

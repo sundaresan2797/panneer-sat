@@ -1,0 +1,24 @@
+{% extends "companies/base.html" %}
+{% block metadata %}<link rel="canonical" href="{{ site_url }}/">{% endblock %}
+{% block content %}
+<section class="selection">
+  <div class="intro">
+    <p class="eyebrow">WELCOME</p>
+    <h1>Where would you<br>like to go?</h1>
+    <p class="intro-copy">Select a company to explore its website.</p>
+    <p class="tamil-copy" lang="ta">நீங்கள் பார்வையிட விரும்பும் நிறுவனத்தைத் தேர்ந்தெடுக்கவும்.</p>
+  </div>
+  <div class="company-grid">
+    <a class="company-card sat-card" href="/sat" aria-label="Visit SAT — Sri Annamalayar Transport & Logistics">
+      <div class="card-top"><span class="company-label">TRANSPORT & LOGISTICS</span><img src="/static/images/logo/logo-nav.png" alt="" width="62" height="58"></div>
+      <div class="card-content"><h2>SAT</h2><p class="company-name">Sri Annamalayar<br>Transport & Logistics</p><p class="company-description">Manpower, facility management, transport and heavy vehicle rental.</p></div>
+      <span class="card-action">Visit SAT <span class="action-mark" aria-hidden="true">+</span></span>
+    </a>
+    <a class="company-card sagbs-card" href="/sagbs" aria-label="Visit SAGBS — Sri Annamalai Global Business Solutions">
+      <div class="card-top"><span class="company-label">DATA & TECHNOLOGY</span><img class="sagbs-logo" src="{{ asset_url('images/SAGBS_LOGO.png') }}" alt="" width="87" height="58"></div>
+      <div class="card-content"><h2>SAGBS</h2><p class="company-name">Sri Annamalai<br>Global Business Solutions</p><p class="company-description">Help with data entry, reports, office work, websites and software.</p></div>
+      <span class="card-action">Visit SAGBS <span class="action-mark" aria-hidden="true">+</span></span>
+    </a>
+  </div>
+</section>
+{% endblock %}

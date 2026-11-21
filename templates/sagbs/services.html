@@ -1,0 +1,101 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ asset_url('sagbs/services.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="guide-hero" aria-labelledby="services-title">
+  <div class="container guide-hero-layout">
+    <div class="guide-intro">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/sagbs">Home</a><span aria-hidden="true">/</span><span aria-current="page">Services</span>
+      </nav>
+      <h1 id="services-title" data-intro>Services for <em>your business.</em></h1>
+      <p data-intro>Need someone to sort your bills, build a website or keep up with orders? Choose the work you need help with.</p>
+      <div class="guide-actions" data-intro>
+        <a class="button button-dark" href="#service-guide">Browse services</a>
+        <a class="guide-link" href="/sagbs/contact">Help me choose</a>
+      </div>
+    </div>
+    <div class="guide-photo" data-intro>
+      <img src="{{ asset_url('sagbs/service-folders.webp') }}"
+           srcset="{{ asset_url('sagbs/service-folders-small.webp') }} 640w, {{ asset_url('sagbs/service-folders.webp') }} 1280w"
+           sizes="(max-width: 767px) 92vw, (min-width: 1328px) 590px, 46vw"
+           width="1280" height="854" fetchpriority="high" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" aria-labelledby="directory-title">
+  <div id="service-guide" class="container guide-directory" tabindex="-1">
+    <nav class="guide-index" aria-labelledby="guide-index-title">
+      <h2 id="guide-index-title">Browse by task</h2>
+      <ul>
+        <li>
+          <a href="/sagbs/services#service-guide"{% if not selected_group %} aria-current="true"{% endif %}>
+            {{ m.icon('grid') }} <span>All services</span><small aria-hidden="true">{{ services | length }}</small>
+          </a>
+        </li>
+        {% for key, group in service_groups.items() %}
+        <li>
+          <a href="/sagbs/services?group={{ key }}#service-guide"{% if selected_group == group %} aria-current="true"{% endif %}>
+            {{ m.icon(group.icon) }} <span>{{ group.title }}</span><small aria-hidden="true">{{ group.slugs | length }}</small>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="guide-list">
+      <h2 id="directory-title">{{ selected_group.title if selected_group else 'All services' }}</h2>
+      <p class="guide-instruction">Choose a service to see what’s included, or ask us for a price.</p>
+      <ul class="guide-entries">
+        {% for service in listed_services %}
+        <li class="guide-entry accent-{{ service.accent }}">
+          <span class="icon-box">{{ m.icon(service.icon) }}</span>
+          <div>
+            <h3><a class="guide-link" href="/sagbs/services/{{ service.slug }}">{{ service.short_title }}</a></h3>
+            <p>{{ service.summary }}</p>
+          </div>
+          <a class="guide-quote" href="/sagbs/request-quote?service={{ service.slug }}">
+            Ask for a price<span class="visually-hidden"> for {{ service.short_title | lower }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section guide-support" aria-labelledby="guide-support-title">
+  <div class="container">
+    <div class="guide-support-heading" data-reveal>
+      <h2 id="guide-support-title">One job or <em>regular help?</em></h2>
+      <p>Choose the support you want. We’ll discuss the work and the cost with you before we start.</p>
+    </div>
+    <div class="guide-options">
+      {% for item in engagements %}
+      <article data-reveal>
+        {{ m.icon(item.icon, 'guide-option-icon') }}
+        <h3><a class="guide-link" href="/sagbs/request-quote?engagement={{ item.code }}">{{ item.title }}</a></h3>
+        <p>{{ item.desc }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" aria-labelledby="guide-contact-title">
+  <div class="container">
+    <div class="guide-contact" data-reveal>
+      <div>
+        <h2 id="guide-contact-title">Need more than one service?</h2>
+        <p>Tell us about the whole job in your own words. We’ll help you choose what fits.</p>
+      </div>
+      <a class="button button-primary" href="/sagbs/request-quote">{{ m.icon('chat-left-text') }} Tell us what you need</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

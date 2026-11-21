@@ -1,0 +1,69 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ asset_url('sagbs/work.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="sample-gallery">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/sagbs">Home</a><span aria-hidden="true">/</span><span aria-current="page">Sample work</span>
+    </nav>
+    <div class="gallery-intro">
+      <h1 data-intro>Try our <em>sample work.</em></h1>
+      <p data-intro>Explore a delivery report, check a set of bills, or see how this website works. The report and bill checker use made-up records.</p>
+    </div>
+    <div class="gallery-filters" id="sampleFilters" role="group" aria-label="Show samples by type" hidden>
+      {% for value, label in [('all','All samples'), ('Analytics','Reports'), ('Automation','Bill checks'), ('Web development','Websites')] %}
+      <button type="button" class="filter-button" data-project-filter="{{ value }}" aria-controls="sampleList" aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ label }}</button>
+      {% endfor %}
+    </div>
+    <p id="sampleCount" class="visually-hidden" role="status"></p>
+    <div class="gallery-grid" id="sampleList">
+      {% for project in projects %}
+      <article class="gallery-card" data-project-type="{{ project.type }}">
+        <div class="gallery-cover cover-{{ project.theme }}" aria-hidden="true">
+          {% if project.theme == 'dashboard' %}
+          <div class="gallery-paper">
+            <strong>Deliveries by month</strong>
+            <div class="gallery-bars">
+              {% for month, count in [('Jan',232), ('Feb',244), ('Mar',248)] %}
+              <div>
+                <b>{{ count }}</b>
+                <svg width="35" height="{{ count / 3.5 }}" focusable="false"><rect width="100%" height="100%"/></svg>
+                <span>{{ month }}</span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% elif project.theme == 'workflow' %}
+          <div class="gallery-paper gallery-bills">
+            <strong>{{ m.icon('receipt') }} Bill check</strong>
+            <div>DEMO-101 <span>First entry</span></div>
+            <div>DEMO-102 <span>First entry</span></div>
+            <div>DEMO-101 <span>Repeated</span></div>
+          </div>
+          {% else %}
+          <div class="gallery-paper gallery-site">
+            <strong><img src="{{ asset_url('images/SAGBS_LOGO.png') }}" alt="" width="36" height="24"> SAGBS</strong>
+            <div><span>A hand with <em>your daily work.</em></span><img src="{{ asset_url('sagbs/office-desk-small.webp') }}" alt="" width="640" height="578"></div>
+          </div>
+          {% endif %}
+        </div>
+        <div class="gallery-copy">
+          <span class="gallery-label">{{ project.label }}</span>
+          <h2>{{ project.title }}</h2>
+          <p>{{ project.desc }}</p>
+          <a class="gallery-link" href="/sagbs/work/{{ project.slug }}">{{ {'dashboard':'Open the delivery report', 'workflow':'Try the bill checker', 'website':'Explore the website example'}[project.theme] }}</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="gallery-contact container">
+  <div><h2>Would this help your business?</h2><p>Tell us which example fits your work and what you’d like it to do.</p></div>
+  <a class="button button-primary" href="/sagbs/request-quote">Ask about your project</a>
+</section>
+{% endblock %}

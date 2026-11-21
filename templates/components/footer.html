@@ -38,12 +38,13 @@
 
       <div class="footer-col">
         <h4>{{ footer.language_col }}</h4>
-        <p><a href="/en/{{ current_slug }}">English</a> | <a href="/ta/{{ current_slug }}">தமிழ்</a></p>
+        <p><a href="/sat/en/{{ current_slug }}">English</a> | <a href="/sat/ta/{{ current_slug }}">தமிழ்</a></p>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>{{ footer.copyright }} &nbsp;·&nbsp; <a href="/{{ lang }}/privacy">{{ 'Privacy Policy' if lang == 'en' else 'தனியுரிமை கொள்கை' }}</a></p>
+      <p><a href="/">{{ 'Choose company' if lang == 'en' else 'நிறுவனத்தைத் தேர்ந்தெடுக்கவும்' }}</a></p>
+      <p>{{ footer.copyright }} &nbsp;·&nbsp; <a href="/sat/{{ lang }}/privacy">{{ 'Privacy Policy' if lang == 'en' else 'தனியுரிமை கொள்கை' }}</a></p>
     </div>
   </div>
 </footer>

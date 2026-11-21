@@ -1,0 +1,116 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ asset_url('sagbs/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="about-hero" aria-labelledby="about-title">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/sagbs">Home</a><span aria-hidden="true">/</span><span aria-current="page">About us</span>
+    </nav>
+    <div class="about-intro">
+      <div class="about-intro-copy">
+        <h1 id="about-title" data-intro>Meet <em>{{ company.short_name }}.</em></h1>
+        <p data-intro>We help businesses in India and abroad with their everyday work. We organise records, make reports, handle office tasks and build websites and software.</p>
+        <div class="about-actions" data-intro>
+          <a class="button button-light" href="/sagbs/services">See our services</a>
+          <a class="about-link" href="#how-we-work">How we work</a>
+        </div>
+      </div>
+      <div class="about-card-stack" data-intro>
+        <address class="about-business-card">
+          <div class="about-card-brand">
+            <img src="{{ asset_url('images/SAGBS_LOGO.png') }}" width="1536" height="1024" alt="">
+            <strong>{{ company.name }}</strong>
+          </div>
+          <div class="about-card-details">
+            <div>{{ m.icon('geo-alt') }}<span>{{ company.locations }}</span></div>
+            {% if email %}
+            <div>{{ m.icon('envelope') }}<a class="about-link" href="mailto:{{ email }}">{{ email }}</a></div>
+            {% endif %}
+          </div>
+        </address>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-band about-purpose" aria-labelledby="purpose-title">
+  <div class="container about-purpose-layout">
+    <h2 id="purpose-title" data-reveal>Why we’re here</h2>
+    <div class="about-purpose-item" data-reveal>
+      <h3>Our mission</h3>
+      <p>Make daily work easier for businesses of any size. That might mean turning a pile of bills into a list you can search, or building a website where customers can reach you.</p>
+    </div>
+    <div class="about-purpose-item" data-reveal>
+      <h3>Our long-term goal</h3>
+      <p>Be a team you can turn to as your business grows. You can start with one job and come back for regular help when you need it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about-band" aria-labelledby="expect-title">
+  <div class="container about-expect-layout">
+    <div>
+      <h2 id="expect-title" data-reveal>What you can expect <em>from us.</em></h2>
+      <ul class="about-commitments">
+        {% for icon, title, desc in [
+          ('chat-left-text', 'We listen first', 'Tell us which job takes up your time. We’ll help you choose a service that fits.'),
+          ('journal-check', 'You know the plan', 'We agree on the tasks, price and dates with you before we start.'),
+          ('search', 'We check the details', 'If a figure is missing or two records disagree, we ask you what is correct.'),
+          ('folder-check', 'We take care of your records', 'We agree with you on which files we need and how we will use them.')
+        ] %}
+        <li data-reveal>
+          {{ m.icon(icon, 'about-value-icon') }}
+          <div><h3>{{ title }}</h3><p>{{ desc }}</p></div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <figure class="about-example" data-reveal>
+      <img src="{{ asset_url('sagbs/office-desk.webp') }}"
+           srcset="{{ asset_url('sagbs/office-desk-small.webp') }} 640w, {{ asset_url('sagbs/office-desk.webp') }} 1280w"
+           sizes="(max-width: 767px) 90vw, (min-width: 1328px) 550px, 43vw"
+           width="1280" height="1155" loading="lazy" decoding="async" alt="">
+      <figcaption>
+        <h3>What if a bill is listed twice?</h3>
+        <p>Two of the made-up bills have the same number. Run the check to see which entry needs a second look.</p>
+        <a class="about-link" href="/sagbs/work/invoice-workflow">Try the sample bill checker</a>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="about-band about-process" aria-labelledby="how-we-work">
+  <div class="container">
+    <h2 id="how-we-work" tabindex="-1">How we work with you</h2>
+    <ol class="about-steps">
+      {% for step in process %}
+      <li data-reveal>
+        <span class="about-step-number" aria-hidden="true">{{ loop.index }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.desc }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="about-band" aria-labelledby="about-contact">
+  <div class="container">
+    <div class="about-contact" data-reveal>
+      <div>
+        <h2 id="about-contact">What’s on <em>your list?</em></h2>
+        <p>Tell us what needs doing and when you need it.</p>
+      </div>
+      <div class="about-actions">
+        <a class="button button-primary" href="/sagbs/contact">{{ m.icon('chat-left-text') }} Talk to our team</a>
+        <a class="about-link" href="/sagbs/request-quote">Ask for a price</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

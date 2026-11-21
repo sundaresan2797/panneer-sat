@@ -1,0 +1,62 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+{% set quote = page == 'request-quote' %}
+{% macro contact_card() %}
+      <aside class="reach-card" aria-labelledby="reach-us">
+        <h2 id="reach-us" tabindex="-1">Contact details</h2>
+        <p class="reach-location">{{ m.icon('geo-alt') }} {{ company.locations }}</p>
+        {% if email %}
+        <div class="reach-method"><h3>{{ m.icon('envelope') }} Email</h3><a href="mailto:{{ email }}">{{ email }}</a></div>
+        {% endif %}
+        {% for phone in phones %}
+        <div class="reach-method">
+          <h3>{{ m.icon('telephone') }} <span>+{{ phone[:2] }} {{ phone[2:7] }} {{ phone[7:] }}</span></h3>
+          <div class="reach-actions">
+            <a href="tel:+{{ phone }}" aria-label="Call +{{ phone }}">Call</a>
+            <a href="https://wa.me/{{ phone }}?text={{ 'Hello SAGBS, I need help with some business work.' | urlencode }}" target="_blank" rel="noopener" aria-label="WhatsApp +{{ phone }}">{{ m.icon('whatsapp') }} WhatsApp</a>
+          </div>
+        </div>
+        {% endfor %}
+      </aside>
+{% endmacro %}
+{% block extra_head %}<link rel="stylesheet" href="{{ asset_url('sagbs/contact.css') }}">{% endblock %}
+{% block content %}
+<div class="enquiry-page {{ 'price-page' if quote else 'message-page' }}">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/sagbs">Home</a><span aria-hidden="true">/</span><span aria-current="page">{{ 'Request a quote' if quote else 'Contact' }}</span>
+    </nav>
+    <div class="enquiry-layout">
+      <header class="enquiry-intro">
+        <h1 data-intro>{% if quote %}Ask for <em>a price.</em>{% else %}Talk to <em>our team.</em>{% endif %}</h1>
+        <p data-intro>{% if quote %}Tell us what needs doing and when you need it. We’ll discuss the work and explain the cost before we start.{% else %}Have a question or a job in mind? Call us, send a WhatsApp message or write to us here.{% endif %}</p>
+        <div class="enquiry-jumps"><a href="#write-to-us">{{ 'Fill in the quote form' if quote else 'Write a message' }}</a><a href="#reach-us">Contact details</a></div>
+      </header>
+
+      {% if not quote %}{{ contact_card() }}{% endif %}
+      <section class="enquiry-paper" aria-labelledby="write-to-us">
+        <h2 id="write-to-us" tabindex="-1">{{ 'Your quote request' if quote else 'Send a message' }}</h2>
+        <p id="enquiryFallback">You can <a href="#reach-us">contact our team directly</a> if the form is unavailable.</p>
+    <form id="sagbsEnquiry" data-kind="{{ 'quote' if page == 'request-quote' else 'contact' }}" hidden novalidate>
+      <div class="honeypot" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <p class="required-note">Fields marked <span class="required">*</span> are required.</p>
+      <fieldset><legend>Your contact details</legend>
+      <div class="form-grid"><div class="field"><label for="name">Your name <span class="required">*</span></label><input id="name" name="name" autocomplete="name" required minlength="2" maxlength="100" aria-describedby="nameError"><span class="field-error" id="nameError"></span></div><div class="field"><label for="company_name">Company name (optional)</label><input id="company_name" name="company_name" autocomplete="organization" maxlength="150"></div>
+      <div class="field"><label for="email">Email address <span class="required">*</span></label><input type="email" id="email" name="email" autocomplete="email" required maxlength="254" aria-describedby="emailError"><span class="field-error" id="emailError"></span></div><div class="field"><label for="phone">Phone number <span class="required">*</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="For example: +91 9876543210" required maxlength="25" aria-describedby="phoneError"><span class="field-error" id="phoneError"></span></div>
+      <div class="field"><label for="country">Country <span class="required">*</span></label><input id="country" name="country" autocomplete="country-name" required minlength="2" maxlength="100" aria-describedby="countryError"><span class="field-error" id="countryError"></span></div></div></fieldset>
+      <fieldset><legend>About the work</legend>
+      <div class="form-grid"><div class="field"><label for="service">What help do you need? <span class="required">*</span></label><select id="service" name="service" class="form-select" required aria-describedby="serviceError"><option value="discuss" {% if selected_service == 'discuss' %}selected{% endif %}>Help me choose</option>{% for service in services %}<option value="{{ service.slug }}" {% if selected_service == service.slug %}selected{% endif %}>{{ service.title }}</option>{% endfor %}</select><span class="field-error" id="serviceError"></span></div>
+      <div class="field"><label for="engagement">How often do you need help?</label><select id="engagement" name="engagement" class="form-select">{% for value,label in [('discuss','Let’s discuss'),('project','One job'),('monthly','Help every month'),('dedicated','A person for my work'),('maintenance','Website or software updates')] %}<option value="{{ value }}" {% if selected_engagement == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div><div class="field"><label for="budget">Your planned budget <span class="optional">(optional · Indian rupees)</span></label><select id="budget" name="budget" class="form-select"><option value="">Not sure yet</option><option value="under-25k">Below ₹25,000</option><option value="25k-75k">₹25,000 – ₹75,000</option><option value="75k-2l">₹75,000 – ₹2,00,000</option><option value="2l-plus">Above ₹2,00,000</option><option value="discuss">I want to discuss this / use another currency</option></select></div></div>
+      <div class="field"><label for="message">What work do you need done? <span class="required">*</span></label><textarea id="message" name="message" rows="5" required minlength="20" maxlength="5000" placeholder="For example: I need help typing 200 bills into Excel by the end of this month." aria-describedby="messageHint messageError"></textarea><span class="field-hint" id="messageHint">Write 20–5,000 characters (letters, numbers or spaces). Do not send passwords, bank details or private records.</span><span class="field-error" id="messageError"></span></div>
+      </fieldset>
+      <div class="field consent-field"><label for="consent"><input type="checkbox" id="consent" name="consent" required aria-describedby="consentError"><span>SAGBS can use my details to reply to this message. Read <a href="/sagbs/privacy">how we use your details</a>. <span class="required">*</span></span></label><span class="field-error" id="consentError"></span></div>
+      <button class="button button-primary submit-button" id="sagbsSubmit" type="submit"><span>{{ 'Ask for a price' if page == 'request-quote' else 'Send message' }}</span>{{ m.icon('send') }}</button>
+      <div id="sagbsFormStatus" class="form-status" role="status" aria-live="polite" tabindex="-1"></div>
+    </form>
+      </section>
+      {% if quote %}{{ contact_card() }}{% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}<script src="{{ asset_url('sagbs/enquiry.js') }}" defer></script>{% endblock %}

@@ -1,0 +1,158 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ asset_url('sagbs/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="desk-hero" aria-labelledby="home-title">
+  <div class="container desk-hero-layout">
+    <div class="desk-intro">
+      <p class="company-name" data-intro>{{ company.name }}</p>
+      <h1 id="home-title" data-intro>A hand with<br><em>your daily work.</em></h1>
+      <p class="desk-lead" data-intro>We turn paper bills into neat records, build websites and help with office work. Bring us one job or ask for help every month.</p>
+      <div class="desk-actions" data-intro>
+        <a class="button button-primary" href="#expertise">Find a service</a>
+        <a class="button button-outline" href="/sagbs/contact">{{ m.icon('chat-left-text') }} Talk to our team</a>
+      </div>
+    </div>
+    <div class="desk-photo" data-intro>
+      <img src="{{ asset_url('sagbs/office-desk.webp') }}"
+           srcset="{{ asset_url('sagbs/office-desk-small.webp') }} 640w, {{ asset_url('sagbs/office-desk.webp') }} 1280w"
+           sizes="(max-width: 767px) 94vw, (min-width: 1328px) 580px, 47vw" width="1280" height="1155"
+           fetchpriority="high" alt="A hand ticking a checklist beside a laptop.">
+      <span class="desk-location">{{ m.icon('geo-alt') }} {{ company.locations }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="home-band" id="expertise" aria-labelledby="services-title">
+  <div class="container">
+    <div class="home-band-heading" data-reveal>
+      <h2 id="services-title">What do you need help with?</h2>
+      <a class="home-link" href="/sagbs/services">See all services</a>
+    </div>
+    <div class="service-folders">
+      {% for theme, group in service_groups.items() %}
+      <article class="service-folder folder-{{ theme }}" data-reveal>
+        <span class="folder-tab" aria-hidden="true"></span>
+        {{ m.icon(group.icon, 'folder-symbol') }}
+        <h3>{{ group.title }}</h3>
+        <p>{{ group.description }}</p>
+        <ul>
+          {% for service in services if service.slug in group.slugs %}
+          <li><a href="/sagbs/services/{{ service.slug }}">{{ service.short_title }}</a></li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="home-band sample-band" aria-labelledby="samples-title">
+  <div class="container home-split">
+    <div class="sample-intro" data-reveal>
+      <h2 id="samples-title">See what the<br> <em>work looks like.</em></h2>
+      <p>See how we organise a list, check a bill or turn delivery numbers into a report. These examples use made-up records.</p>
+      <div class="sample-links">
+        <a class="button button-light" href="/sagbs/work">Explore our samples</a>
+        <a class="home-link" href="/sagbs/technology">How we use Excel and other tools</a>
+      </div>
+    </div>
+    <div class="sample-sheet" data-reveal>
+      <div class="sheet-tabs" role="tablist" aria-label="Choose an example" hidden>
+        {% for id, label in [('insights', 'Reports'), ('data', 'Records'), ('workflows', 'Tasks')] %}
+        <button type="button" id="tab-{{ id }}" role="tab" aria-controls="panel-{{ id }}" data-workspace-tab="{{ id }}">{{ label }}</button>
+        {% endfor %}
+      </div>
+      <div class="sheet-panel" id="panel-insights">
+        <h3>Deliveries by month</h3>
+        <p>Compare the number of deliveries over three months.</p>
+        <div class="sheet-bars">
+          {% for month, count in [('January', 232), ('February', 244), ('March', 248)] %}
+          <div><span>{{ month }}</span><span class="sheet-track" aria-hidden="true"><i style="--fill: {{ count / 300 * 100 }}%"></i></span><strong>{{ count }}</strong></div>
+          {% endfor %}
+        </div>
+        <a class="home-link" href="/sagbs/work/operations-dashboard">Open the delivery report</a>
+      </div>
+      <div class="sheet-panel" id="panel-data">
+        <h3>A simple stock list</h3>
+        <p>Put each item and its count on one line so you can find it again.</p>
+        <table class="sheet-table">
+          <caption class="visually-hidden">Sample stock records</caption>
+          <thead><tr><th scope="col">Item</th><th scope="col">In stock</th></tr></thead>
+          <tbody><tr><th scope="row">Notebooks</th><td>48</td></tr><tr><th scope="row">Pens</th><td>75</td></tr></tbody>
+        </table>
+        <a class="home-link" href="/sagbs/services/data-entry">See how data entry works</a>
+      </div>
+      <div class="sheet-panel" id="panel-workflows">
+        <h3>Spot a repeated bill</h3>
+        <p>Software can spot when the same bill number appears again.</p>
+        <div class="sheet-bills">
+          <div><span>Bill DEMO-101</span><strong>{{ m.icon('check-circle') }} First entry</strong></div>
+          <div><span>Bill DEMO-101</span><strong>{{ m.icon('exclamation-circle') }} Repeated number</strong></div>
+        </div>
+        <a class="home-link" href="/sagbs/work/invoice-workflow">Try the bill checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-band" aria-labelledby="process-title">
+  <div class="container home-split process-layout">
+    <div data-reveal>
+      <h2 id="process-title">How we work<br> <em>with you.</em></h2>
+      <p class="home-intro-text">We work with businesses in India and abroad. You can explain the job in your own words.</p>
+      <a class="home-link" href="/sagbs/about">About SAGBS</a>
+    </div>
+    <ol class="home-steps">
+      {% for step in process %}
+      <li data-reveal>
+        <span class="step-mark" aria-hidden="true">{{ loop.index }}</span>
+        <div><h3>{{ step.title }}</h3><p>{{ step.desc }}</p></div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="home-band industry-band" aria-labelledby="industry-title">
+  <div class="container home-split">
+    <div data-reveal>
+      <h2 id="industry-title">Find your type<br> of business.</h2>
+      <p class="home-intro-text">Choose your industry for examples of the work we can help with.</p>
+      <a class="home-link" href="/sagbs/industries">See all industries</a>
+    </div>
+    <div class="home-industries" data-reveal>
+      {% for industry in industries %}
+      <a href="/sagbs/industries#industry-{{ loop.index }}">{{ m.icon(industry.icon) }} {{ industry.title }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="home-band" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="home-contact" data-reveal>
+      <div>
+        <span class="lottie-node" id="workflowLottie" aria-hidden="true">{{ m.icon('check2') }}</span>
+        <h2 id="contact-title">Tell us about<br> <em>your job.</em></h2>
+        <p>Choose an option to ask for a price. We’ll agree on the work and cost with you before we start.</p>
+        <a class="home-link" href="/sagbs/contact">Talk to our team</a>
+      </div>
+      <div class="quote-options">
+        {% for choice, label, example, symbol in [
+          ('project', 'One job', 'Build a website or tidy up a file.', 'folder'),
+          ('monthly', 'Help every month', 'Keep records and reports up to date.', 'calendar2-check'),
+          ('dedicated', 'A person for my work', 'Get help with regular office tasks.', 'person-workspace'),
+          ('maintenance', 'Website or software care', 'Keep a site or business tool working.', 'tools')
+        ] %}
+        <a href="/sagbs/request-quote?engagement={{ choice }}">{{ m.icon(symbol) }}<span><strong>{{ label }}</strong><small>{{ example }}</small></span></a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

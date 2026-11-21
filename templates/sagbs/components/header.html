@@ -1,0 +1,14 @@
+<header class="site-header" id="sagbsHeader">
+  <nav class="navbar navbar-expand-xl container" aria-label="SAGBS main navigation">
+    <a class="brand" href="/sagbs" aria-label="SAGBS homepage"><img class="brand-logo" src="{{ asset_url('images/SAGBS_LOGO.png') }}" alt="" width="66" height="44"><span>SAGBS<small>GLOBAL BUSINESS SOLUTIONS</small></span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sagbsNav" aria-controls="sagbsNav" aria-expanded="false" aria-label="Open navigation"><i class="bi bi-list" aria-hidden="true"></i></button>
+    <div class="collapse navbar-collapse" id="sagbsNav">
+      <ul class="navbar-nav ms-auto align-items-xl-center">
+        {% for slug, label in [('home','Home'),('about','About'),('services','Services'),('industries','Who we help'),('technology','Tools'),('work','Samples'),('contact','Contact')] %}
+        <li class="nav-item"><a class="nav-link {{ 'active' if page == slug else '' }}" {% if page == slug %}aria-current="page"{% endif %} href="{{ '/sagbs' if slug == 'home' else '/sagbs/' + slug }}">{{ label }}</a></li>
+        {% endfor %}
+      </ul>
+      <a class="button button-small button-dark nav-quote" href="/sagbs/request-quote">Ask for a price <i class="bi bi-plus-lg" aria-hidden="true"></i></a>
+    </div>
+  </nav>
+</header>

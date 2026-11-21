@@ -1,0 +1,63 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ asset_url('sagbs/industries.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="sector-cover" aria-labelledby="sector-title">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/sagbs">Home</a><span aria-hidden="true">/</span><span aria-current="page">Who we help</span>
+    </nav>
+    <div class="sector-opening">
+      <div class="sector-intro" data-intro>
+        <h1 id="sector-title">Find your <em>business.</em></h1>
+        <p>A shop may need help counting stock. A school may need help keeping attendance records. Choose your type of business to see how we can help.</p>
+        <a class="sector-link" href="/sagbs/contact">Help me choose</a>
+      </div>
+      <nav class="sector-picker" aria-labelledby="choose-industry">
+        <h2 id="choose-industry" tabindex="-1">Choose your industry</h2>
+        <ul>
+          {% for industry in industries %}
+          <li><a href="#industry-{{ loop.index }}">{{ m.icon(industry.icon) }}<span>{{ industry.title }}</span></a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<div class="container sector-directory">
+  {% for industry in industries %}
+  <article class="sector-entry" id="industry-{{ loop.index }}" tabindex="-1" aria-labelledby="sector-name-{{ loop.index }}">
+    <div class="sector-context">
+      <span class="sector-symbol">{{ m.icon(industry.icon) }}</span>
+      <div>
+        <h2 id="sector-name-{{ loop.index }}">{{ industry.title }}</h2>
+        <p>{{ industry.problem }}</p>
+      </div>
+    </div>
+    <div class="sector-answer">
+      <h3>How we can help</h3>
+      <p>{{ industry.solution }}</p>
+      <ul aria-label="Services for {{ industry.title }}">
+        {% for service in services if service.slug in industry.services %}
+        <li><a href="/sagbs/services/{{ service.slug }}">{{ service.short_title }}</a></li>
+        {% endfor %}
+      </ul>
+      <a class="sector-return" href="#choose-industry">Choose another industry</a>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+<section class="container sector-footer">
+  <div>
+    <h2>Does your work fit more than one group?</h2>
+    <p>Tell us about the job in your own words. We’ll help you choose the services you need.</p>
+  </div>
+  <a class="button button-primary" href="/sagbs/request-quote">Tell us about your business</a>
+</section>
+{% endblock %}

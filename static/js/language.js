@@ -1,8 +1,7 @@
 (function () {
   "use strict";
 
-  // Remember the visitor's last chosen language so a future direct visit to
-  // "/" can be pointed at it (root always defaults to /en/ server-side).
+  // Remember SAT's language independently of the company selection page.
   var currentLang = document.documentElement.getAttribute("lang");
   try {
     if (currentLang === "en" || currentLang === "ta") {

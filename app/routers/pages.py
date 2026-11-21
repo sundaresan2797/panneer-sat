@@ -24,7 +24,7 @@ from app.content.data import (
 )
 from app.templates_env import templates
 
-router = APIRouter()
+router = APIRouter(prefix="/sat")
 
 LANGS = ("en", "ta")
 
@@ -51,8 +51,8 @@ def _other_lang(lang: str) -> str:
 def base_context(request: Request, lang: str, slug: str) -> dict:
     settings = get_settings()
     other = _other_lang(lang)
-    alt_path = f"/{other}/" if slug == "" else f"/{other}/{slug}"
-    canonical_path = f"/{lang}/" if slug == "" else f"/{lang}/{slug}"
+    alt_path = f"/sat/{other}/" if slug == "" else f"/sat/{other}/{slug}"
+    canonical_path = f"/sat/{lang}/" if slug == "" else f"/sat/{lang}/{slug}"
 
     return {
         "request": request,
@@ -70,13 +70,6 @@ def base_context(request: Request, lang: str, slug: str) -> dict:
         "whatsapp_number": settings.whatsapp_number,
         "current_slug": slug,
     }
-
-
-@router.get("/", response_class=HTMLResponse)
-def root_redirect(request: Request):
-    from fastapi.responses import RedirectResponse
-
-    return RedirectResponse(url="/en/")
 
 
 @router.get("/{lang}/", response_class=HTMLResponse)

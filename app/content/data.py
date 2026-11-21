@@ -40,37 +40,37 @@ SITE = {
 
 NAV = {
     "en": [
-        ("Home", "/en/"),
-        ("About", "/en/about"),
-        ("Services", "/en/services"),
-        ("Industries", "/en/industries"),
-        ("Gallery", "/en/gallery"),
-        ("Reviews", "/en/reviews"),
-        ("Contact", "/en/contact"),
+        ("Home", "/sat/en/"),
+        ("About", "/sat/en/about"),
+        ("Services", "/sat/en/services"),
+        ("Industries", "/sat/en/industries"),
+        ("Gallery", "/sat/en/gallery"),
+        ("Reviews", "/sat/en/reviews"),
+        ("Contact", "/sat/en/contact"),
     ],
     "ta": [
-        ("முகப்பு", "/ta/"),
-        ("எங்களைப் பற்றி", "/ta/about"),
-        ("சேவைகள்", "/ta/services"),
-        ("தொழில்கள்", "/ta/industries"),
-        ("கேலரி", "/ta/gallery"),
-        ("கருத்துகள்", "/ta/reviews"),
-        ("தொடர்பு", "/ta/contact"),
+        ("முகப்பு", "/sat/ta/"),
+        ("எங்களைப் பற்றி", "/sat/ta/about"),
+        ("சேவைகள்", "/sat/ta/services"),
+        ("தொழில்கள்", "/sat/ta/industries"),
+        ("கேலரி", "/sat/ta/gallery"),
+        ("கருத்துகள்", "/sat/ta/reviews"),
+        ("தொடர்பு", "/sat/ta/contact"),
     ],
 }
 
 SERVICES_DROPDOWN = {
     "en": [
-        ("Manpower Supply", "/en/manpower"),
-        ("Facility Management", "/en/facility-management"),
-        ("Transport & Logistics", "/en/transport"),
-        ("Heavy Vehicle Rental", "/en/heavy-vehicle-rental"),
+        ("Manpower Supply", "/sat/en/manpower"),
+        ("Facility Management", "/sat/en/facility-management"),
+        ("Transport & Logistics", "/sat/en/transport"),
+        ("Heavy Vehicle Rental", "/sat/en/heavy-vehicle-rental"),
     ],
     "ta": [
-        ("மனிதவள சப்ளை", "/ta/manpower"),
-        ("Facility Management", "/ta/facility-management"),
-        ("போக்குவரத்து & லாஜிஸ்டிக்ஸ்", "/ta/transport"),
-        ("கனரக வாகன வாடகை", "/ta/heavy-vehicle-rental"),
+        ("மனிதவள சப்ளை", "/sat/ta/manpower"),
+        ("Facility Management", "/sat/ta/facility-management"),
+        ("போக்குவரத்து & லாஜிஸ்டிக்ஸ்", "/sat/ta/transport"),
+        ("கனரக வாகன வாடகை", "/sat/ta/heavy-vehicle-rental"),
     ],
 }
 
@@ -172,7 +172,7 @@ SERVICE_CARDS = {
             "desc": "Reliable workforce solutions based on your operational requirements.",
             "points": ["Skilled", "Semi-skilled", "Unskilled", "ITI", "Diploma", "Degree", "Administrative"],
             "cta": "Explore Manpower Services",
-            "link": "/en/manpower",
+            "link": "/sat/en/manpower",
         },
         {
             "icon": "building",
@@ -182,7 +182,7 @@ SERVICE_CARDS = {
             "desc": "Professional workforce support for housekeeping, cleaning, gardening and facility operations.",
             "points": ["Housekeeping", "Professional Cleaning", "Gardening", "Facility Support"],
             "cta": "Explore Facility Services",
-            "link": "/en/facility-management",
+            "link": "/sat/en/facility-management",
         },
         {
             "icon": "truck",
@@ -192,7 +192,7 @@ SERVICE_CARDS = {
             "desc": "Transportation solutions for corporate, workforce, goods and commercial requirements.",
             "points": ["Corporate Transport", "Workforce Transport", "Goods Transport", "Commercial Logistics"],
             "cta": "Explore Transport Services",
-            "link": "/en/transport",
+            "link": "/sat/en/transport",
         },
         {
             "icon": "tipper",
@@ -202,7 +202,7 @@ SERVICE_CARDS = {
             "desc": "Heavy vehicle solutions for commercial and industrial requirements.",
             "points": ["10-Wheeler Tipper Trucks", "Bharat Benz", "U-Truck"],
             "cta": "Explore Vehicle Rental",
-            "link": "/en/heavy-vehicle-rental",
+            "link": "/sat/en/heavy-vehicle-rental",
         },
     ],
     "ta": [
@@ -214,7 +214,7 @@ SERVICE_CARDS = {
             "desc": "உங்கள் நிறுவனத்தின் செயல்பாட்டு தேவைகளுக்கு ஏற்ப நம்பகமான மனிதவள தீர்வுகள்.",
             "points": ["Skilled", "Semi-skilled", "Unskilled", "ITI", "Diploma", "Degree", "நிர்வாக பணியாளர்கள்"],
             "cta": "மனிதவள சேவைகளை காண",
-            "link": "/ta/manpower",
+            "link": "/sat/ta/manpower",
         },
         {
             "icon": "building",
@@ -224,7 +224,7 @@ SERVICE_CARDS = {
             "desc": "Housekeeping, cleaning, gardening மற்றும் Facility பணிகளுக்கான தொழில்முறை பணியாளர் ஆதரவு.",
             "points": ["Housekeeping", "Professional Cleaning", "Gardening", "Facility Support"],
             "cta": "Facility சேவைகளை காண",
-            "link": "/ta/facility-management",
+            "link": "/sat/ta/facility-management",
         },
         {
             "icon": "truck",
@@ -234,7 +234,7 @@ SERVICE_CARDS = {
             "desc": "Corporate, workforce, goods மற்றும் commercial தேவைகளுக்கான போக்குவரத்து தீர்வுகள்.",
             "points": ["Corporate Transport", "Workforce Transport", "Goods Transport", "Commercial Logistics"],
             "cta": "போக்குவரத்து சேவைகளை காண",
-            "link": "/ta/transport",
+            "link": "/sat/ta/transport",
         },
         {
             "icon": "tipper",
@@ -244,7 +244,7 @@ SERVICE_CARDS = {
             "desc": "வணிக மற்றும் தொழில் தேவைகளுக்கான கனரக வாகன தீர்வுகள்.",
             "points": ["10-Wheeler Tipper Trucks", "Bharat Benz", "U-Truck"],
             "cta": "வாகன வாடகையை காண",
-            "link": "/ta/heavy-vehicle-rental",
+            "link": "/sat/ta/heavy-vehicle-rental",
         },
     ],
 }

@@ -32,7 +32,13 @@ class Settings:
     contact_email: str = os.getenv("CONTACT_EMAIL", "")
     whatsapp_number: str = os.getenv("WHATSAPP_NUMBER", "")
 
-    site_url: str = os.getenv("SITE_URL", "http://127.0.0.1:8000")
+    site_url: str = os.getenv("SITE_URL", "http://127.0.0.1:8000").rstrip("/")
+
+    # SAGBS is a separate business: use its own inbox.
+    sagbs_email: str = os.getenv("SAGBS_EMAIL", "sriannamalaiglobal@gmail.com")
+    sagbs_whatsapp: str = os.getenv("SAGBS_WHATSAPP", "919345030776")
+    sagbs_whatsapp_secondary: str = os.getenv("SAGBS_WHATSAPP_SECONDARY", "918248454617")
+    sagbs_database_url: str = os.getenv("SAGBS_DATABASE_URL", "")
 
     # Google Sheets logging for quote-form enquiries. Either set
     # GOOGLE_SERVICE_ACCOUNT_JSON (the full key file content, e.g. on Vercel)

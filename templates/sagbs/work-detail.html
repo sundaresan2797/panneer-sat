@@ -1,0 +1,90 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+{% block extra_head %}<link rel="stylesheet" href="{{ asset_url('sagbs/work-detail.css') }}">{% endblock %}
+{% block content %}
+{% set labels = {'dashboard':'Delivery report', 'workflow':'Bill checker', 'website':'Business website'} %}
+{% set related = {'dashboard':'data-analytics', 'workflow':'business-automation', 'website':'website-development'} %}
+<div class="sample-detail sample-{{ project.theme }}">
+  <header class="sample-introduction">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/sagbs">Home</a><span aria-hidden="true">/</span><a href="/sagbs/work">Sample work</a><span aria-hidden="true">/</span><span aria-current="page">{{ labels[project.theme] }}</span></nav>
+      <div class="sample-heading">
+        <div data-intro><p>{{ project.label }}</p><h1>{{ labels[project.theme] }}</h1></div>
+        <p data-intro>{{ project.desc }}</p>
+      </div>
+    </div>
+  </header>
+  <div class="container sample-body">
+    {% if project.theme == 'dashboard' %}
+    <section class="sample-workspace" id="analyticsDemo" aria-labelledby="report-title">
+      <div class="sample-toolbar">
+        <div><p class="sample-kicker">MADE-UP DELIVERY RECORDS</p><h2 id="report-title">Compare deliveries</h2></div>
+        <div><label for="demoPeriod">Choose the months</label>
+          <select id="demoPeriod" class="form-select">
+            <option value="q1">January – March</option><option value="q2">April – June</option><option value="all">January – June</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-metrics">
+        <div><span>Total deliveries</span><strong id="demoShipments">724</strong></div>
+        <div><span>Delivered on time</span><strong id="demoOnTime">90.3%</strong></div>
+        <div><span>Problems to check</span><strong id="demoExceptions">34</strong></div>
+      </div>
+      <div class="report-breakdown">
+        <div><h3>Deliveries by month</h3><div class="demo-bars" id="demoBars" role="img" aria-label="Deliveries by month"></div></div>
+        <div><h3>Monthly records</h3>
+          <div class="table-responsive" role="region" aria-label="Monthly delivery records" tabindex="0"><table class="table demo-table">
+            <caption>The figures used in the chart and totals.</caption>
+            <thead><tr><th scope="col">Month</th><th scope="col">Deliveries</th><th scope="col">On time</th><th scope="col">Problems</th></tr></thead>
+            <tbody id="demoTableBody"></tbody>
+          </table></div>
+        </div>
+      </div>
+      <p class="demo-live-message" id="demoAnalyticsStatus" role="status"></p>
+      <noscript><p>Turn on JavaScript to change the months and view the monthly records.</p></noscript>
+    </section>
+    {% elif project.theme == 'workflow' %}
+    <section class="sample-workspace" id="invoiceDemo" aria-labelledby="bills-title">
+      <h2 id="bills-title">Check five sample bills</h2>
+      <p>The checker follows the same rules for each bill. It runs in your browser and no AI is used.</p>
+      <div class="demo-actions">
+        <button class="button button-primary" type="button" id="runInvoiceWorkflow">Check sample bills</button>
+        <button class="button button-outline" type="button" id="resetInvoiceWorkflow">Start again</button>
+      </div>
+      <p id="workflowStatus" class="demo-live-message" role="status">Choose “Check sample bills” to see which entries need a closer look.</p>
+      <div class="table-responsive" role="region" aria-label="Sample bills and check results" tabindex="0">
+        <table class="table demo-table"><caption>All amounts are in Indian rupees.</caption>
+          <thead><tr><th scope="col">Bill number</th><th scope="col">Supplier</th><th scope="col">Amount (₹)</th><th scope="col">Check result</th></tr></thead>
+          <tbody id="invoiceRows"></tbody>
+        </table>
+      </div>
+      <button class="button button-outline" type="button" id="downloadInvoiceCSV" disabled>{{ m.icon('download') }} Download rows with no errors (CSV)</button>
+      <noscript><p>Turn on JavaScript to run the checks and download the sample rows.</p></noscript>
+    </section>
+    {% else %}
+    <section class="sample-workspace site-tour">
+      <div class="site-preview">
+        <img src="{{ asset_url('sagbs/office-desk-small.webp') }}" width="640" height="578" alt="">
+        <a class="button button-light" href="/sagbs">Open the SAGBS homepage</a>
+      </div>
+      <div><h2>Explore the site you’re using</h2>
+        <p>Try these pages to see how a visitor finds a service and gets in touch.</p>
+        <ul class="tour-links">
+          <li><a href="/">Choose a company</a><span>Start at the page shared by SAT and SAGBS.</span></li>
+          <li><a href="/sagbs/services">Find a service</a><span>Choose a type of work and see the jobs it covers.</span></li>
+          <li><a href="/sagbs/contact">View the contact form</a><span>See how a customer can send a real enquiry.</span></li>
+        </ul>
+      </div>
+    </section>
+    {% endif %}
+    <div class="sample-footnotes">
+      <section><h2>Tools used</h2><ul>{% for tool in project.tools %}<li>{{ tool }}</li>{% endfor %}</ul><a href="/sagbs/technology">See what the tools do</a></section>
+      <nav aria-label="More sample work"><h2>Try another example</h2>
+        {% for other in projects if other.slug != project.slug %}<a href="/sagbs/work/{{ other.slug }}">{{ m.icon(other.icon) }} {{ labels[other.theme] }}</a>{% endfor %}
+      </nav>
+    </div>
+    <section class="sample-enquiry"><div><h2>Need something like this?</h2><p>Tell us what you’d like it to do for your business.</p></div><a class="button button-dark" href="/sagbs/request-quote?service={{ related[project.theme] }}">Ask about your project</a></section>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}{% if project.theme != 'website' %}<script src="{{ asset_url('sagbs/demos.js') }}" defer></script>{% endif %}{% endblock %}

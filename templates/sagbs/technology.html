@@ -1,0 +1,74 @@
+{% extends "sagbs/base.html" %}
+{% import "sagbs/components/macros.html" as m %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ asset_url('sagbs/technology.css') }}">
+{% endblock %}
+{% block content %}
+<section class="tools-cover">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/sagbs">Home</a><span aria-hidden="true">/</span><span aria-current="page">Tools we use</span></nav>
+    <div class="tools-split">
+      <div data-intro>
+        <h1>Tools for <em>everyday work.</em></h1>
+        <p>Start with the job you need done. See how we use tools to organise records, build websites and save time on repeated tasks.</p>
+        <a class="button button-light" href="#tool-guide">Find tools by task</a>
+      </div>
+      <figure class="tools-report" data-intro>
+        <figcaption>{{ m.icon('bar-chart-line') }} Sample delivery report</figcaption>
+        <p>Deliveries per month</p>
+        <table>
+          <caption class="visually-hidden">Made-up delivery counts</caption>
+          <tbody>
+          {% for month, total in [('January',232), ('February',244), ('March',248)] %}
+          <tr><th scope="row">{{ month }}</th><td><span class="tools-track" aria-hidden="true"><i style="width:{{ total / 300 * 100 }}%"></i></span></td><td>{{ total }}</td></tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        <small>Made-up figures</small>
+        <a class="tools-link" href="/sagbs/work/operations-dashboard">Explore the sample report</a>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="tools-band">
+  <div class="container tools-split tools-directory">
+    <div>
+      <h2 id="tool-guide" tabindex="-1">What do you want to do?</h2>
+      <p>Open a task to see the tools we may use and what each one does.</p>
+      <a class="tools-link" href="/sagbs/services">Browse our services</a>
+    </div>
+    <div class="tools-groups">
+      {% for group in technologies %}
+      <details {% if loop.first %}open{% endif %}>
+        <summary>{{ m.icon(group.icon) }}<span>{{ group.title }}</span></summary>
+        <div class="tools-definitions">
+          <p>{{ group.example }}</p>
+          <dl>
+            {% for name, meaning in group.tools %}
+            <dt>{{ name }}</dt><dd>{{ meaning }}</dd>
+            {% endfor %}
+          </dl>
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="tools-site tools-band">
+  <div class="container">
+    <h2>Behind this website</h2>
+    <div class="tools-notes">
+      <article><h3>When you open a page</h3><p>Jinja2 fills in the content. Bootstrap and CSS arrange it for the size of your screen.</p></article>
+      <article><h3>When you send a message</h3><p>FastAPI checks your details. The form confirms receipt after the database saves your enquiry.</p></article>
+      <article><h3>When you scroll</h3><p>Some headings and charts move into view. If you choose reduced motion on your device, the site skips those effects.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="tools-band container tools-contact">
+  <div><h2>Tell us about the job.</h2><p>We’ll explain which tools fit, any licence costs and how to use the finished work.</p></div>
+  <a class="button button-primary" href="/sagbs/request-quote">Ask about your project</a>
+</section>
+{% endblock %}

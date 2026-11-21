@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f5fd"/>
+  <circle cx="1110" cy="450" r="290" fill="none" stroke="#e6dff6" stroke-width="2"/>
+  <circle cx="1110" cy="450" r="235" fill="none" stroke="#e6dff6" stroke-width="2"/>
+  <circle cx="1110" cy="450" r="180" fill="none" stroke="#e6dff6" stroke-width="2"/>
+  <rect x="58" y="45" width="110" height="74" rx="10" fill="#fff"/>
+  <image href="/static/images/SAGBS_LOGO.png" x="58" y="45" width="110" height="74" preserveAspectRatio="xMidYMid meet"/>
+  <text x="186" y="101" font-family="Arial,sans-serif" font-size="39" font-weight="700" fill="#1d1c2d">SAGBS</text>
+  <text x="70" y="202" font-family="Arial,sans-serif" font-size="16" letter-spacing="3" fill="#6951df">RECORDS. WEBSITES. OFFICE SUPPORT.</text>
+  <text x="65" y="305" font-family="Arial,sans-serif" font-size="83" font-weight="700" letter-spacing="-4" fill="#1d1c2d">Make your</text>
+  <text x="65" y="397" font-family="Arial,sans-serif" font-size="83" font-weight="700" letter-spacing="-4" fill="#1d1c2d">work <tspan font-family="Georgia,serif" font-weight="400" font-style="italic" fill="#6951df">easier.</tspan></text>
+  <text x="70" y="467" font-family="Arial,sans-serif" font-size="24" fill="#5e596c">Your partner for data, websites and business support.</text>
+  <line x1="70" y1="532" x2="1130" y2="532" stroke="#ded8ed"/>
+  <text x="70" y="576" font-family="Arial,sans-serif" font-size="18" fill="#6d647b">Sri Annamalai Global Business Solutions</text>
+  <text x="1130" y="576" text-anchor="end" font-family="Arial,sans-serif" font-size="18" fill="#6d647b">India · International</text>
+</svg>
